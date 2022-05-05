@@ -18,6 +18,7 @@ report: "report/workflow.rst"
 include: "rules/common.smk"
 include: "rules/assemble.smk"
 include: "rules/climate.smk"
+include: "rules/topography.smk"
 
 
 ##### target rules #####
