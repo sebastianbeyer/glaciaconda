@@ -4,6 +4,7 @@ rule topo:
     input:
         "results/topography/ETOPO1/ETOPO1_NHEM_20km.nc",
         "results/topography/ICE7GNA/ICE7GNA_NHEM_20km.nc",
+        "results/oceankill/oceankill_ICE7GNA_NHEM_20km.nc",
 
 rule ETOPO1:
     conda: "../envs/base.yaml"
@@ -29,3 +30,11 @@ rule ICE7GNA:
         "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
     shell:
         "python3 workflow/scripts/prepare_ICE-7G.py {input.grid} {input.main} {output} "
+
+rule oceankillmask:
+    input:
+      "results/topography/{topography}/{topography}_{grid_name}.nc"
+    output:
+        "results/oceankill/oceankill_{topography}_{grid_name}.nc",
+    shell:
+        "python3 workflow/scripts/prepare_oceankillmask.py {input} {output} --remove_himalaya"
