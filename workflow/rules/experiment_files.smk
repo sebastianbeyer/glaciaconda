@@ -1,5 +1,3 @@
-
-
 rule pismtest:
     input:
       "results/PISM_file/test_NHEM_20km.nc",
@@ -39,8 +37,8 @@ rule assembled_model_tillphi:
         refheight = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_NHEM_20km.nc"
     output:
-        main      = "results/PISM_file/test_{grid_name}.nc",
-        refheight = "results/PISM_file/test_{grid_name}_refheight.nc",
+        main      = "results/PISM_file/test_{grid_name}_tillphi.nc",
+        refheight = "results/PISM_file/test_{grid_name}_tillphi_refheight.nc",
     shell:
         """
         ncks {input.atmo} {output.main}
