@@ -19,6 +19,8 @@ include: "rules/common.smk"
 include: "rules/assemble.smk"
 include: "rules/climate.smk"
 include: "rules/topography.smk"
+include: "rules/heatflux.smk"
+include: "rules/sediment.smk"
 
 
 ##### target rules #####

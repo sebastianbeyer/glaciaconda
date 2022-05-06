@@ -109,8 +109,11 @@ def read_csv_and_compute_index(csvfile):
 
     time_bnds_secs = time_bnds * secPerYear
 
+    # compute time from bounds
+    time = np.mean(time_bnds_secs, axis=1)
+
     # convert time to seconds and invert direction
-    time = time[::-1] * secPerYear * -1
+    # time = time[::-1] * secPerYear * -1
 
     # also need to reverse the delta
     delta = delta[::-1]
@@ -175,19 +178,19 @@ def generate_index_file(ncfile_warm, ncfile_cold, ncfile_warm_ocean, ncfile_cold
 
         print("Interpolating fields using the index...")
         for i, gi in enumerate(tqdm(index)):
-            pass
-            # airtemp_gi[i, :, :] = apply_index(
-            #     airtemp_warm, airtemp_cold, 1, 0, gi)
-            # airtempsd_gi[i, :, :] = apply_index(
-            #     airtempsd_warm, airtempsd_cold, 1, 0, gi)
-            # precip_gi[i, :, :] = apply_index(
-            #     precip_warm, precip_cold, 1, 0, gi)
-            # theta_gi[i, :, :] = apply_index(
-            #     theta_ocean_warm, theta_ocean_cold, 1, 0, gi)
-            # salinity_gi[i, :, :] = apply_index(
-            #     salinity_ocean_warm, salinity_ocean_cold, 1, 0, gi)
-            # refheight_gi[i, :, :] = apply_index(
-            #     refheight_warm, refheight_cold, 1, 0, gi)
+            # pass
+            airtemp_gi[i, :, :] = apply_index(
+                airtemp_warm, airtemp_cold, 1, 0, gi)
+            airtempsd_gi[i, :, :] = apply_index(
+                airtempsd_warm, airtempsd_cold, 1, 0, gi)
+            precip_gi[i, :, :] = apply_index(
+                precip_warm, precip_cold, 1, 0, gi)
+            theta_gi[i, :, :] = apply_index(
+                theta_ocean_warm, theta_ocean_cold, 1, 0, gi)
+            salinity_gi[i, :, :] = apply_index(
+                salinity_ocean_warm, salinity_ocean_cold, 1, 0, gi)
+            refheight_gi[i, :, :] = apply_index(
+                refheight_warm, refheight_cold, 1, 0, gi)
 
             # ensure that precip does not go negative!
         precip_gi = np.clip(precip_gi, 0, None)
@@ -324,7 +327,7 @@ def generate_index_file(ncfile_warm, ncfile_cold, ncfile_warm_ocean, ncfile_cold
                     'salinity_ocean': {'dtype': 'float32', 'zlib': False, '_FillValue': None},
                     }
         output.to_netcdf(outputfile, encoding=None, engine="scipy")
-        output.to_netcdf("output_nc4.nc", encoding=encoding,)
+        # output.to_netcdf("output_nc4.nc", encoding=encoding,)
 
         # reference height goes into a different file
         output_refheight = xr.Dataset(
@@ -397,7 +400,16 @@ if __name__ == "__main__":
         index = savitzky_golay(index, 51, 3)
 
     time_subset = time[::args.stride]
-    time_bnds_subset = time_bnds_secs[::args.stride]
+    # time_bnds_subset = time_bnds_secs[::args.stride]
+
+    # recompute bounds based on the subset of time
+    time_bnds_subset = np.empty((time_subset.size, 2))
+    dt_half = (time_subset[1] - time_subset[0]) / 2
+    for i in range(time_subset.size):
+        left = time_subset[i] - dt_half
+        right = time_subset[i] + dt_half
+        time_bnds_subset[i, :] = [left, right]
+
     index_subset = index[::args.stride]
 
     secPerYear = 60 * 60 * 24 * 365
