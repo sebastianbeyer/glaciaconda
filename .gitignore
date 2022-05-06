@@ -1,0 +1,8 @@
+.snakemake/
+datasets/
+resources/grids/*.nc
+resources/grids/*.nc
+resources/grids/*.nc
+results/
+workflow/.snakemake/
+
