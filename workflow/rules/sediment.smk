@@ -23,9 +23,9 @@ rule tillphi:
         time = "00:10:00"
     input:
       topg = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-      sediment = "results/sediment/LaskeMasters/LaskeMasters_{grid_name}.nc",
+      sediment = "results/sediment/{sediment_data}/{sediment_data}_{grid_name}.nc",
     output:
-        "results/sediment/tillphi/tillphi_LaskeMasters_{grid_name}.nc",
+        "results/sediment/tillphi/tillphi_{sediment_data}_{grid_name}.nc",
     params:
         sediment_threshold = 0.2,
         phi_min = 15,
