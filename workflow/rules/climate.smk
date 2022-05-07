@@ -33,7 +33,7 @@ rule CESM_atmo:
         main      ="results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_atmo.nc",
         refheight ="results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_refHeight.nc"
     shell:
-        "python3 workflow/scripts/prepare_CESM_atmo.py {input.grid} {input.atmo} {input.stddev} {output.main} {output.refheight} --yearmean"
+        "python3 workflow/scripts/prepare_CESM_atmo.py {input.grid} {input.atmo} {input.stddev} {output.main} {output.refheight}"
 
 rule CESM_ocean:
     input:
@@ -42,7 +42,7 @@ rule CESM_ocean:
     output:
         main = "results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_ocean.nc",
     shell:
-        "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main} --yearmean"
+        "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main}"
 
 rule glacialindex_offline:
     input:
