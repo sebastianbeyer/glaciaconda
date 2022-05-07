@@ -25,6 +25,9 @@ include: "rules/sediment.smk"
 ##### pism experiments ####
 include: "rules/experiment_files.smk"
 
+
+include: "rules/pism_exps.smk"
+
 ##### target rules #####
 
 # rule all:
