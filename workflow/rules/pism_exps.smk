@@ -1,11 +1,17 @@
-rule testslurm:
-  input:
-    main      = "results/PISM_file/heinrich_tillphi_taufac0.01_NHEM_20km.nc",
-    refheight = "results/PISM_file/heinrich_tillphi_taufac0.01_NHEM_20km_refheight.nc",
+rule exp_taufac:
   output:
-    main = "results/PISM_results/exp1/test.nc",
-    ex   = "results/PISM_results/exp1/ex_test.nc",
-    ts   = "results/PISM_results/exp1/ts_test.nc",
+    main = expand("results/PISM_results/heinrich_taufac/heinrich_taufac{taufac}_NHEM_20km.nc", taufac=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
+    ex   = expand("results/PISM_results/heinrich_taufac/ex_heinrich_taufac{taufac}_NHEM_20km.nc", taufac=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
+    ts   = expand("results/PISM_results/heinrich_taufac/ts_heinrich_taufac{taufac}_NHEM_20km.nc", taufac=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
+
+rule exp_heinrich_tillphi:
+  input:
+    main      = "results/PISM_file/heinrich_tillphi_taufac{taufac}_{grid_name}.nc",
+    refheight = "results/PISM_file/heinrich_tillphi_taufac{taufac}_{grid_name}_refheight.nc",
+  output:
+    main = "results/PISM_results/heinrich_taufac/heinrich_taufac{taufac}_{grid_name}.nc",
+    ex   = "results/PISM_results/heinrich_taufac/ex_heinrich_taufac{taufac}_{grid_name}.nc",
+    ts   = "results/PISM_results/heinrich_taufac/ts_heinrich_taufac{taufac}_{grid_name}.nc",
   shell:
     """
 spack load pism-sbeyer@master
@@ -37,6 +43,7 @@ srun pismr \
   -atmosphere given,elevation_change \
   -atmosphere_given_period 1 \
   -temp_lapse_rate 5 \
+  -surface pdd \
   -surface.pdd.factor_ice 0.019 \
   -surface.pdd.factor_snow 0.005 \
   -surface.pdd.refreeze 0.1 \
@@ -50,7 +57,7 @@ srun pismr \
   -ye 100 \
   -ts_times 10 \
   -extra_times 100 \
-  -extra_vars thk,velsurf_mag,tillwat,velbase_mag,mask,climatic_mass_balance,tendency_of_ice_amount_due_to_flow,tendency_of_ice_amount_due_to_surface_mass_flux,tendency_of_ice_amount,surface_accumulation_flux,effective_precipitation,effective_air_temp,temppabase,ice_surface_temp,air_temp_snapshot \
+  -extra_vars thk,velsurf_mag,tillwat,velbase_mag,mask,climatic_mass_balance,temppabase,ice_surface_temp,air_temp_snapshot,topg,tauc,velsurf,surface_runoff_flux,tendency_of_ice_amount_due_to_basal_mass_flux,tendency_of_ice_amount_due_to_discharge \
   -o {output.main} \
   -ts_file {output.ts} \
   -extra_file {output.ex} \
