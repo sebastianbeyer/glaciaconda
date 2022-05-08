@@ -4,6 +4,12 @@ rule exp_taufac:
     ex   = expand("results/PISM_results/heinrich_taufac/ex_heinrich_taufac{taufac}_NHEM_20km.nc", taufac=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
     ts   = expand("results/PISM_results/heinrich_taufac/ts_heinrich_taufac{taufac}_NHEM_20km.nc", taufac=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
 
+rule exp_taufac_single:
+  output:
+    main = "results/PISM_results/heinrich_taufac/heinrich_taufac0.006_NHEM_20km.nc",
+    ex   = "results/PISM_results/heinrich_taufac/ex_heinrich_taufac0.006_NHEM_20km.nc",
+    ts   = "results/PISM_results/heinrich_taufac/ts_heinrich_taufac0.006_NHEM_20km.nc",
+
 rule exp_heinrich_tillphi:
   input:
     main      = "results/PISM_file/heinrich_tillphi_taufac{taufac}_{grid_name}.nc",
