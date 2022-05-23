@@ -17,7 +17,14 @@ rule ETOPO1:
     output:
         "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
     shell:
-        "python3 workflow/scripts/prepare_ETOPO1.py {input.grid} {input.topg} {input.thk} {output} "
+        """
+        python3 workflow/scripts/prepare_ETOPO1.py {input.grid} {input.topg} {input.thk} output_tmp.nc
+        ncatted -O -a _FillValue,,d,, output_tmp.nc
+        ncatted -O -a missing_value,,d,, output_tmp.nc
+        ncatted -O -a actual_range,,d,, output_tmp.nc
+        cdo copy output_tmp.nc {output}
+        rm output_tmp.nc
+        """
 
 rule ICE7GNA:
     conda: "../envs/base.yaml"
