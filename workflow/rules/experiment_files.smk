@@ -1,8 +1,9 @@
 rule pismtest:
-    input:
+  input:
       "results/PISM_file/test_NHEM_20km.nc",
       "results/PISM_file/test_NHEM_20km_tillphi.nc",
-      expand("results/PISM_file/heinrich_tillphi_taufac{factor}_NHEM_20km.nc", factor=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
+      expand("results/PISM_file/heinrich_tillphi_taufac{factor}_NHEM_20km.nc", factor=[0.006, 0.008, 0.01, 0.0125, 0.016, 0.02, 0.024, 0.028, 0.03, 0.035, 0.04, 0.06, 0.08, 0.1  ]),
+
 
 
 rule assembled_model:
@@ -11,8 +12,8 @@ rule assembled_model:
         ocean     = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_ocean.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        thk       = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        oceankill = "results/oceankill/oceankill_ICE7GNA_{grid_name}.nc",
+        thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+        oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
     output:
         main      = "results/PISM_file/test_{grid_name}.nc",
@@ -35,8 +36,8 @@ rule assembled_model_tillphi:
         ocean     = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_ocean.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        thk       = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        oceankill = "results/oceankill/oceankill_ICE7GNA_{grid_name}.nc",
+        thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+        oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_{grid_name}.nc"
     output:
@@ -63,8 +64,8 @@ use rule assembled_model_tillphi as heinrich_factor with:
     ocean     = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_ocean.nc",
     heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
     topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-    thk       = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-    oceankill = "results/oceankill/oceankill_ICE7GNA_{grid_name}.nc",
+    thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+    oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
     refheight = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
     tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac{factor}_{grid_name}.nc"
   output:
