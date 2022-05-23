@@ -387,13 +387,19 @@ grids_GRN = [grid_GRN_5km, grid_GRN_10km,
 
 grids_Searise = [grid_GRN_Searise_20km]
 
+for grid in grids_GRN:
+    print(grid)
+    filename = "CDO_grid_GRN_{}km.nc".format(grid[4] / 1000)
+    projection = projectionGRN
+    create_grid_for_cdo_remap(grid, projection, False, filename)
+    prepare_ncfile_for_cdo(filename)
+
 for grid in grids_nhem:
     print(grid)
     filename = "CDO_grid_NHEM_{}km.nc".format(grid[4] / 1000)
     projection = projectionNHEM
     create_grid_for_cdo_remap(grid, projection, False, filename)
     prepare_ncfile_for_cdo(filename)
-exit()
 
 for name, grid in grids_initmip.items():
     print(name, grid)
@@ -401,8 +407,6 @@ for name, grid in grids_initmip.items():
     projection = projectionInitmip
     create_grid_for_cdo_remap(grid, projection, True, filename)
     prepare_ncfile_for_cdo(filename)
-
-
 
 for grid in grids_GRN:
     print(grid)
