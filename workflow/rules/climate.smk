@@ -12,8 +12,6 @@ FILENAME = {
     }
 }
 
-wildcard_constraints:
-  grid_name="\w{4}_\d{1,2}km"
 
 
 rule all:
@@ -35,6 +33,18 @@ rule CESM_atmo:
     shell:
         "python3 workflow/scripts/prepare_CESM_atmo.py {input.grid} {input.atmo} {input.stddev} {output.main} {output.refheight}"
 
+
+rule CESM_atmo_yearmean:
+    input:
+        atmo   = lambda wildcards: FILENAME[wildcards.CESM_exp_name]["atmo"],
+        stddev = lambda wildcards: FILENAME[wildcards.CESM_exp_name]["stddev"],
+        grid   = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        main      ="results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_atmo_yearmean.nc",
+        refheight ="results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_refHeight_yearmean.nc"
+    shell:
+        "python3 workflow/scripts/prepare_CESM_atmo.py {input.grid} {input.atmo} {input.stddev} {output.main} {output.refheight} --yearmean"
+
 rule CESM_ocean:
     input:
         ocean = lambda wildcards: FILENAME[wildcards.CESM_exp_name]["ocean"],
@@ -43,6 +53,14 @@ rule CESM_ocean:
         main = "results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_ocean.nc",
     shell:
         "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main}"
+rule CESM_ocean_yearmean:
+    input:
+        ocean = lambda wildcards: FILENAME[wildcards.CESM_exp_name]["ocean"],
+        grid  = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        main = "results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_ocean_yearmean.nc",
+    shell:
+        "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main} --yearmean"
 
 rule glacialindex_offline:
     input:
