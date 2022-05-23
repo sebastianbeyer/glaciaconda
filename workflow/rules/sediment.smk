@@ -4,7 +4,7 @@ rule laskemasters:
     input:
         "results/sediment/LaskeMasters/LaskeMasters_NHEM_20km.nc",
         "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_NHEM_20km.nc",
-        expand("results/sediment/tillphi/tillphi_LaskeMasters_taufac{factor}_NHEM_20km.nc", factor=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1  ]),
+        expand("results/sediment/tillphi/tillphi_LaskeMasters_taufac{factor}_NHEM_20km.nc", factor=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1, 1  ]),
 
 rule sediment:
     conda: "../envs/base.yaml"
