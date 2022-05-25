@@ -62,6 +62,15 @@ rule CESM_ocean_yearmean:
     shell:
         "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main} --yearmean"
 
+rule glacialindex:
+    input:
+        index = "datasets/glacialIndex/41586_2004_BFnature02805_MOESM1_ESM.csv",
+    output:
+        main = "results/glacialindex/glacialindex.nc",
+    shell:
+      "python3 workflow/scripts/prepare_glacialindex.py {input.index} {output.main}"
+
+
 rule glacialindex_offline:
     input:
         warm = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_NHEM_20km_atmo.nc",

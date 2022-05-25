@@ -153,3 +153,67 @@ mpirun -np 4 ~/pism-sbeyer/bin/pismr \
   -front_retreat_file {input.main} \
 
     """
+
+rule test_glacialindex:
+  input:
+    main      = "results/PISM_file/glacialindex_NHEM_20km.nc",
+  output:
+    main = "results/PISM_results/testglacialindex/testglacialindex.nc",
+    ex   = "results/PISM_results/testglacialindex/ex_testglacialindex.nc",
+    ts   = "results/PISM_results/testglacialindex/ts_testglacialindex.nc",
+  shell:
+    """
+
+mpirun -np 4 ~/pism-sbeyer/bin/pismr \
+  -bootstrap True \
+  -timestep_hit_multiples 1 \
+  -options_left True \
+  -tauc_slippery_grounding_lines True \
+  -Mx 625 \
+  -My 625 \
+  -Mz 101 \
+  -Mbz 11 \
+  -Lz 5000 \
+  -Lbz 2000 \
+  -calving eigen_calving,thickness_calving \
+  -thickness_calving_threshold 200 \
+  -ocean th \
+  -ocean_th_period 1 \
+  -ocean.th.periodic True \
+  -part_grid True \
+  -cfbc True \
+  -kill_icebergs True \
+  -eigen_calving_K 1e16 \
+  -subgl True \
+  -atmosphere_given_file {input.main} \
+  -atmosphere index_forcing \
+  -atmosphere_given_period 1 \
+  -temp_lapse_rate 5 \
+  -surface pdd \
+  -surface.pdd.air_temp_all_precip_as_rain 275.15 \
+  -surface.pdd.air_temp_all_precip_as_snow 271.15 \
+  -surface.pdd.factor_ice 0.019 \
+  -surface.pdd.factor_snow 0.005 \
+  -surface.pdd.refreeze 0.1 \
+  -surface.pdd.std_dev.periodic True \
+  -atmosphere.given.periodic True \
+  -atmosphere.index.periodic True \
+  -sia_e 5 \
+  -ssa_e 1 \
+  -pseudo_plastic_q 0.4 \
+   -till_effective_fraction_overburden 0.02 \
+  -topg_to_phi 5,40,-300,700 \
+  -ys -120000 \
+  -ye -119900 \
+  -ts_times 10 \
+  -extra_times 100 \
+  -extra_vars thk,usurf,velsurf_mag,bwat,velbase_mag,mask,climatic_mass_balance,effective_precipitation,effective_air_temp,temppabase, \
+  -atmosphere_index_file {input.main} \
+  -bed_def lc \
+  -o {output.main} \
+  -ts_file {output.ts} \
+  -extra_file {output.ex} \
+  -i {input.main} \
+  -front_retreat_file {input.main} \
+    """
+
