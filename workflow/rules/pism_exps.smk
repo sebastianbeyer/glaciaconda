@@ -48,7 +48,7 @@ srun pismr \
   -pdd_sd_period 1 \
   -atmosphere given,elevation_change \
   -atmosphere_given_period 1 \
-  -temp_lapse_rate 5 \
+  -temp_lapse_rate 0 \
   -surface pdd \
   -surface.pdd.factor_ice 0.019 \
   -surface.pdd.factor_snow 0.005 \
@@ -71,6 +71,85 @@ srun pismr \
   -front_retreat_file {input.main} \
   -pdd_sd_file {input.main} \
   -atmosphere_lapse_rate_file {input.refheight} \
+    """
 
+
+rule exp_yearmean_compare_monthly:
+  input:
+    main      = "results/PISM_file/greenland_PD_GRN_20km.nc",
+    refheight = "results/PISM_file/greenland_PD_GRN_20km_refheight.nc",
+  output:
+    main = "results/PISM_results/yearmean_compare/yearmean_compare_monthly.nc",
+    ex   = "results/PISM_results/yearmean_compare/ex_yearmean_compare_monthly.nc",
+    ts   = "results/PISM_results/yearmean_compare/ts_yearmean_compare_monthly.nc",
+  shell:
+    """
+#spack load pism-sbeyer@master
+
+mpirun -np 4 ~/pism-sbeyer/bin/pismr \
+  -test_climate_models \
+  -bootstrap True \
+  -timestep_hit_multiples 1 \
+  -options_left True \
+  -stress_balance ssa+sia \
+  -Mx 76 \
+  -My 141 \
+  -Mz 101 \
+  -Mbz 11 \
+  -Lz 4000 \
+  -Lbz 2000 \
+  -ocean pik \
+  -atmosphere given \
+  -surface pdd \
+  -atmosphere.given.periodic True \
+  -ys 0 \
+  -ye 1 \
+  -ts_times 1 \
+  -extra_times daily \
+  -extra_vars thk,climatic_mass_balance,ice_surface_temp,air_temp_snapshot,effective_air_temp,effective_precipitation,pdd_fluxes,pdd_rates \
+  -o {output.main} \
+  -ts_file {output.ts} \
+  -extra_file {output.ex} \
+  -i {input.main} \
+  -front_retreat_file {input.main} \
+
+    """
+rule exp_yearmean_compare_yearly:
+  input:
+    main      = "results/PISM_file/greenland_PD_GRN_20km_yearmean.nc",
+    refheight = "results/PISM_file/greenland_PD_GRN_20km_yearmean_refheight.nc",
+  output:
+    main = "results/PISM_results/yearmean_compare/yearmean_compare_yearmean.nc",
+    ex   = "results/PISM_results/yearmean_compare/ex_yearmean_compare_yearmean.nc",
+    ts   = "results/PISM_results/yearmean_compare/ts_yearmean_compare_yearmean.nc",
+  shell:
+    """
+#spack load pism-sbeyer@master
+
+mpirun -np 4 ~/pism-sbeyer/bin/pismr \
+  -test_climate_models \
+  -bootstrap True \
+  -timestep_hit_multiples 1 \
+  -options_left True \
+  -stress_balance ssa+sia \
+  -Mx 76 \
+  -My 141 \
+  -Mz 101 \
+  -Mbz 11 \
+  -Lz 4000 \
+  -Lbz 2000 \
+  -ocean pik \
+  -atmosphere given \
+  -surface pdd \
+  -ys 0 \
+  -ye 1 \
+  -ts_times 1 \
+  -extra_times daily \
+  -extra_vars thk,climatic_mass_balance,ice_surface_temp,air_temp_snapshot,effective_air_temp,effective_precipitation,pdd_fluxes,pdd_rates \
+  -o {output.main} \
+  -ts_file {output.ts} \
+  -extra_file {output.ex} \
+  -i {input.main} \
+  -front_retreat_file {input.main} \
 
     """
