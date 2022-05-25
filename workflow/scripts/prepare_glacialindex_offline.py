@@ -232,12 +232,9 @@ def generate_index_file(ncfile_warm, ncfile_cold, ncfile_warm_ocean, ncfile_cold
                                     dims=["time", "y", "x"],
                                     coords={
                                         "time": time,
-                                        "y": y,
-                                        "x": x,
                                     },
                                     attrs=dict(
-                                        long_name="Reference height temperature standard deviation",
-                                        units="Kelvin",
+                                        units="1",
                                     ),
                                     )
         precip_xr = xr.DataArray(name="precipitation",
