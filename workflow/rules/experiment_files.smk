@@ -77,8 +77,12 @@ rule modelfile_greenland_PD_monthly:
         ncks -A {input.ocean} {output.main}
         ncks -A -v bheatflx {input.heatflux} {output.main}
         ncks -A -v topg {input.topg} {output.main}
-        #ncks -A -v thk {input.thk} {output.main}
+        ncks -A -v thk {input.thk} {output.main}
         ncks -A {input.oceankill} {output.main}
+
+        # delete history
+        ncatted -a history,global,d,, {output.main}
+        ncatted -a history_of_appended_files,global,d,, {output.main}
 
         cp {input.refheight} {output.refheight}
         """
