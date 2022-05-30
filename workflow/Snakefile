@@ -14,6 +14,7 @@ report: "report/workflow.rst"
 
 ##### load rules #####
 
+include: "rules/sealevel.smk"
 include: "rules/common.smk"
 include: "rules/assemble.smk"
 include: "rules/climate.smk"
