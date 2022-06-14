@@ -108,7 +108,7 @@ def assemble_cmd_options(grid, climate, ocean,
         "-thickness_calving_threshold 200"
         ]
     extra_vars = {
-        "standard": ["-extra_vars thk,velsurf_mag,tillwat,velbase_mag,mask,climatic_mass_balance,temppabase,ice_surface_temp,air_temp_snapshot,topg,tauc,velsurf,surface_runoff_flux,tendency_of_ice_amount_due_to_basal_mass_flux,tendency_of_ice_amount_due_to_discharge"],
+        "standard": ["-extra_vars thk,velsurf_mag,tillwat,velbase_mag,mask,climatic_mass_balance,temppabase,ice_surface_temp,air_temp_snapshot,topg,velsurf,surface_runoff_flux,tendency_of_ice_amount_due_to_basal_mass_flux,tendency_of_ice_amount_due_to_discharge"],
         }
     oceans = {
         "pik": ["-ocean pik"],
@@ -127,10 +127,12 @@ def assemble_cmd_options(grid, climate, ocean,
           ],
         "index_forcing": [
             "-atmosphere index_forcing",
+            "-atmosphere_index_file {input.main}",
             "-surface pdd",
             "-surface.pdd.factor_ice 0.019",
             "-surface.pdd.factor_snow 0.005",
             "-surface.pdd.refreeze 0.1",
+            "-test_climate_models",
           ],
         }
     dynamics = [
@@ -147,7 +149,7 @@ def assemble_cmd_options(grid, climate, ocean,
           "-ys {params.start}",
           "-ye {params.stop}",
           "-ts_times 10",
-          "-extra_times 100",
+          "-extra_times monthly",
         ],
         "duration": [
           "-y {params.duration}",
@@ -191,16 +193,40 @@ rule test_cmd:
     main      = "results/PISM_file/greenland_PD_GRN_20km.nc",
     refheight = "results/PISM_file/greenland_PD_GRN_20km_refheight.nc",
   params:
-    start     = -120000,
-    stop      = -115000,
     spackpackage = "pism-sbeyer@master"
   output:
-    main = "results/PISM_results/yearmean_compare/yearmean_compare_monthly2.nc",
-    ex   = "results/PISM_results/yearmean_compare/ex_yearmean_compare_monthly2.nc",
-    ts   = "results/PISM_results/yearmean_compare/ts_yearmean_compare_monthly2.nc",
+    main = "results/PISM_results/multifile/multifile_test_time~{start}_{stop}.nc",
+    ex   = "results/PISM_results/multifile/ex_multifile_test_time~{start}_{stop}.nc",
+    ts   = "results/PISM_results/multifile/ts_multifile_test_time~{start}_{stop}.nc",
   shell:
     assemble_cmd_options("GRN_20km", climate="PDD", ocean="th", use_spack=False)
 
+rule test_cmd2:
+  input:
+    main      = "results/PISM_results/multifile/multfile_test_time~{oldstart}_{start}.nc",
+    refheight = "results/PISM_file/greenland_PD_GRN_20km_refheight.nc",
+  params:
+    spackpackage = "pism-sbeyer@master"
+  output:
+    main = "results/PISM_results/multifile/multifile_test_time_cont~{start}_{stop}.nc",
+    ex   = "results/PISM_results/multifile/ex_multifile_test_time_cont~{start}_{stop}.nc",
+    ts   = "results/PISM_results/multifile/ts_multifile_test_time_cont~{start}_{stop}.nc",
+  shell:
+    assemble_cmd_options("GRN_20km", climate="PDD", ocean="th", use_spack=False)
+
+rule test_fake_glacialindex:
+  input:
+    main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+  params:
+    spackpackage = "pism-sbeyer@master",
+    start = 0,
+    stop = 10,
+  output:
+    main = "results/PISM_results/test_fake_glacialindex/test_fake_glacialindex.nc",
+    ex   = "results/PISM_results/test_fake_glacialindex/ex_test_fake_glacialindex.nc",
+    ts   = "results/PISM_results/test_fake_glacialindex/ts_test_fake_glacialindex.nc",
+  shell:
+    assemble_cmd_options("GRN_20km", climate="index_forcing", ocean="th", use_spack=False)
 rule exp_yearmean_compare_monthly:
   input:
     main      = "results/PISM_file/greenland_PD_GRN_20km.nc",
