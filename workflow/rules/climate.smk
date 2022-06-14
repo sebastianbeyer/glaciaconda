@@ -70,6 +70,12 @@ rule glacialindex:
     shell:
       "python3 workflow/scripts/prepare_glacialindex.py {input.index} {output.main}"
 
+rule glacialindex_test:
+    input:
+    output:
+        main = "results/glacialindex/test_glacialindex.nc",
+    shell:
+      "python3 workflow/scripts/generate_fake_glacialindex.py {output.main}"
 
 rule glacialindex_offline:
     input:
