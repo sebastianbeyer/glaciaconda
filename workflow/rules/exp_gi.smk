@@ -122,7 +122,8 @@ rule test_multirun_first:
     main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
   resources:
     nodes = 1,
-    partition = "standard96:test"
+    partition = "standard96:test",
+    time = "1:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     start = 0,
@@ -141,7 +142,8 @@ rule test_multirun_2:
     main      = "results/PISM_results/test_multirun/multirun_0_10.nc",
   resources:
     nodes = 1,
-    partition = "standard96:test"
+    partition = "standard96:test",
+    time = "1:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
@@ -159,7 +161,8 @@ rule test_multirun_3:
     main      = "results/PISM_results/test_multirun/multirun_10_15.nc",
   resources:
     nodes = 1,
-    partition = "standard96:test"
+    partition = "standard96:test",
+    time = "1:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
