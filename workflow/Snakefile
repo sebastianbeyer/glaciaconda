@@ -28,6 +28,7 @@ include: "rules/experiment_files.smk"
 
 
 include: "rules/pism_exps.smk"
+include: "rules/exp_gi.smk"
 
 ##### target rules #####
 
