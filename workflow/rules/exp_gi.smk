@@ -120,6 +120,9 @@ def assemble_cmd_options(grid, climate, ocean,
 rule test_multirun_first:
   input:
     main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+  resources:
+    nodes = 1,
+    partition = "standard96:test"
   params:
     spackpackage = "pism-sbeyer@current",
     start = 0,
@@ -136,6 +139,9 @@ rule test_multirun_first:
 rule test_multirun_2:
   input:
     main      = "results/PISM_results/test_multirun/multirun_0_10.nc",
+  resources:
+    nodes = 1,
+    partition = "standard96:test"
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
@@ -151,6 +157,9 @@ rule test_multirun_2:
 rule test_multirun_3:
   input:
     main      = "results/PISM_results/test_multirun/multirun_10_15.nc",
+  resources:
+    nodes = 1,
+    partition = "standard96:test"
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
