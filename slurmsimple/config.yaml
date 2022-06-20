@@ -15,7 +15,8 @@ default-resources:
   - partition=standard96
   - qos=normal
   - time="12:00:00"
-  - nodes=1
+  - nodes=8
+  - mem_mb=300000
 restart-times: 0
 max-jobs-per-second: 10
 max-status-checks-per-second: 1
