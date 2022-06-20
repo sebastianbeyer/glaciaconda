@@ -121,7 +121,7 @@ rule test_multirun_first:
   input:
     main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
   params:
-    spackpackage = "pism-sbeyer@master",
+    spackpackage = "pism-sbeyer@current",
     start = 0,
     stop = 10,
     indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
@@ -130,35 +130,35 @@ rule test_multirun_first:
     ex   = "results/PISM_results/test_multirun/ex_multirun_0_10.nc",
     ts   = "results/PISM_results/test_multirun/ts_multirun_0_10.nc",
   shell:
-    assemble_cmd_options("GRN_20km", climate="index_forcing", ocean="th", use_spack=False)
+    assemble_cmd_options("GRN_20km", climate="index_forcing", ocean="th", use_spack=True)
 
 
 rule test_multirun_2:
   input:
     main      = "results/PISM_results/test_multirun/multirun_0_10.nc",
   params:
-    spackpackage = "pism-sbeyer@master",
+    spackpackage = "pism-sbeyer@current",
     duration = 5,
     indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
-   
+
   output:
     main = "results/PISM_results/test_multirun/multirun_10_15.nc",
     ex   = "results/PISM_results/test_multirun/ex_multirun_10_15.nc",
     ts   = "results/PISM_results/test_multirun/ts_multirun_10_15.nc",
   shell:
-    assemble_cmd_options("GRN_20km", climate="index_forcing", time="duration", ocean="th", use_spack=False)
+    assemble_cmd_options("GRN_20km", climate="index_forcing", time="duration", ocean="th", use_spack=True)
 
 rule test_multirun_3:
   input:
     main      = "results/PISM_results/test_multirun/multirun_10_15.nc",
   params:
-    spackpackage = "pism-sbeyer@master",
+    spackpackage = "pism-sbeyer@current",
     duration = 5,
     indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
-   
+
   output:
     main = "results/PISM_results/test_multirun/multirun_15_20.nc",
     ex   = "results/PISM_results/test_multirun/ex_multirun_15_20.nc",
     ts   = "results/PISM_results/test_multirun/ts_multirun_15_20.nc",
   shell:
-    assemble_cmd_options("GRN_20km", climate="index_forcing", time="duration", ocean="th", use_spack=False)
+    assemble_cmd_options("GRN_20km", climate="index_forcing", time="duration", ocean="th", use_spack=True)
