@@ -75,13 +75,13 @@ def assemble_cmd_options(grid, climate, ocean,
         "startstop": [
           "-ys {params.start}",
           "-ye {params.stop}",
-          "-ts_times 10",
+          "-ts_times 1",
           "-extra_times 1",
         ],
         "duration": [
           "-y {params.duration}",
-          "-ts_times 10",
-          "-extra_times 100",
+          "-ts_times 1",
+          "-extra_times 1",
         ],
         }
 
