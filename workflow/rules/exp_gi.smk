@@ -10,7 +10,7 @@ def assemble_cmd_options(grid, climate, ocean,
                          ):
 
     inout = [
-        "-i {input.main}",
+        "-i {input.restart}",
         "-o {output.main}",
         "-ts_file {output.ts}",
         "-extra_file {output.ex}",
@@ -54,7 +54,7 @@ def assemble_cmd_options(grid, climate, ocean,
           ],
         "index_forcing": [
             "-atmosphere index_forcing",
-            "-atmosphere_index_file {params.indexfile}",
+            "-atmosphere_index_file {input.main}",
             "-surface pdd",
             "-surface.pdd.factor_ice 0.019",
             "-surface.pdd.factor_snow 0.005",
@@ -116,10 +116,10 @@ def assemble_cmd_options(grid, climate, ocean,
     return wholescript
 
 
-
 rule test_multirun_first:
   input:
     main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+    restart   = "results/PISM_file/test_glacialindex_GRN_20km.nc",
   resources:
     nodes = 1,
     partition = "standard96:test",
@@ -128,7 +128,6 @@ rule test_multirun_first:
     spackpackage = "pism-sbeyer@current",
     start = 0,
     stop = 10,
-    indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
   output:
     main = "results/PISM_results/test_multirun/multirun_0_10.nc",
     ex   = "results/PISM_results/test_multirun/ex_multirun_0_10.nc",
@@ -139,7 +138,8 @@ rule test_multirun_first:
 
 rule test_multirun_2:
   input:
-    main      = "results/PISM_results/test_multirun/multirun_0_10.nc",
+    restart = "results/PISM_results/test_multirun/multirun_0_10.nc",
+    main    = "results/PISM_file/test_glacialindex_GRN_20km.nc",
   resources:
     nodes = 1,
     partition = "standard96:test",
@@ -147,7 +147,6 @@ rule test_multirun_2:
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
-    indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
 
   output:
     main = "results/PISM_results/test_multirun/multirun_10_15.nc",
@@ -158,7 +157,8 @@ rule test_multirun_2:
 
 rule test_multirun_3:
   input:
-    main      = "results/PISM_results/test_multirun/multirun_10_15.nc",
+    main    = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+    restart = "results/PISM_results/test_multirun/multirun_10_15.nc",
   resources:
     nodes = 1,
     partition = "standard96:test",
@@ -166,7 +166,6 @@ rule test_multirun_3:
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
-    indexfile = "results/PISM_file/test_glacialindex_GRN_20km.nc",
 
   output:
     main = "results/PISM_results/test_multirun/multirun_15_20.nc",
