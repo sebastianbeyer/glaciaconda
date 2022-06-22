@@ -1,0 +1,20 @@
+
+climate:
+  mprange:
+    pdd_factor_ice: 0.019
+    pdd_factor_snow: 0.005
+    pdd_refreeze: 0.1
+    temp_lapse_rate: 5
+    air_temp_all_precip_as_rain: 275.15
+    air_temp_all_precip_as_snow: 271.15
+
+dynamics:
+  heinrich:
+    # this is the tuning that worked well for Heinrich runs (not too much other
+    # stuff tested with it so far)
+    sia_e: 2
+    ssa_e: 1
+    pseudo_plastic_q: 0.25
+    till_effective_fraction_overburden: 0.02
+
+

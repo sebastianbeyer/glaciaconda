@@ -1,4 +1,5 @@
-
+configfile: "config/config.yaml"
+print(config)
 
 def assemble_cmd_options(grid, climate, ocean,
                          bootstrap=True, periodic=True,
@@ -46,42 +47,45 @@ def assemble_cmd_options(grid, climate, ocean,
         "PDD": [
             "-atmosphere given,elevation_change",
             "-atmosphere_lapse_rate_file {input.refheight}",
-            "-temp_lapse_rate 5",
+            f"-temp_lapse_rate {config['climate']['mprange']['temp_lapse_rate']}",
             "-surface pdd",
-            "-surface.pdd.factor_ice 0.019",
-            "-surface.pdd.factor_snow 0.005",
-            "-surface.pdd.refreeze 0.1",
+            f"-surface.pdd.factor_ice {config['climate']['mprange']['pdd_factor_ice']}",
+            f"-surface.pdd.factor_snow {config['climate']['mprange']['pdd_factor_snow']}",
+            f"-surface.pdd.refreeze {config['climate']['mprange']['pdd_refreeze']}",
+            f"-surface.pdd.air_temp_all_precip_as_rain {config['climate']['mprange']['air_temp_all_precip_as_rain']}",
+            f"-surface.pdd.air_temp_all_precip_as_snow {config['climate']['mprange']['air_temp_all_precip_as_snow']}",
           ],
         "index_forcing": [
             "-atmosphere index_forcing",
             "-atmosphere_index_file {input.main}",
             "-surface pdd",
-            "-surface.pdd.factor_ice 0.019",
-            "-surface.pdd.factor_snow 0.005",
-            "-surface.pdd.refreeze 0.1",
-            "-test_climate_models",
+            f"-surface.pdd.factor_ice {config['climate']['mprange']['pdd_factor_ice']}",
+            f"-surface.pdd.factor_snow {config['climate']['mprange']['pdd_factor_snow']}",
+            f"-surface.pdd.refreeze {config['climate']['mprange']['pdd_refreeze']}",
+            f"-surface.pdd.air_temp_all_precip_as_rain {config['climate']['mprange']['air_temp_all_precip_as_rain']}",
+            f"-surface.pdd.air_temp_all_precip_as_snow {config['climate']['mprange']['air_temp_all_precip_as_snow']}",
           ],
         }
     dynamics = [
         "-stress_balance ssa+sia",
         "-pseudo_plastic True",
-        "-sia_e 2",
-        "-ssa_e 1",
-        "-pseudo_plastic_q 0.25",
-        "-till_effective_fraction_overburden 0.02",
+        f"-sia_e {config['dynamics']['heinrich']['sia_e']}",
+        f"-ssa_e {config['dynamics']['heinrich']['ssa_e']}",
+        f"-pseudo_plastic_q {config['dynamics']['heinrich']['pseudo_plastic_q']}",
+        f"-till_effective_fraction_overburden {config['dynamics']['heinrich']['till_effective_fraction_overburden']}",
         ]
 
     times = {
         "startstop": [
           "-ys {params.start}",
           "-ye {params.stop}",
-          "-ts_times 1",
-          "-extra_times 1",
+          "-ts_times {params.ts_times}",
+          "-extra_times {params.ex_times}",
         ],
         "duration": [
           "-y {params.duration}",
-          "-ts_times 1",
-          "-extra_times 1",
+          "-ts_times {params.ts_times}",
+          "-extra_times {params.ex_times}",
         ],
         }
 
@@ -128,12 +132,14 @@ rule test_multirun_first:
     spackpackage = "pism-sbeyer@current",
     start = 0,
     stop = 10,
+    ts_times = 1,
+    ex_times = 1,
   output:
     main = "results/PISM_results/test_multirun/multirun_0_10.nc",
     ex   = "results/PISM_results/test_multirun/ex_multirun_0_10.nc",
     ts   = "results/PISM_results/test_multirun/ts_multirun_0_10.nc",
   shell:
-    assemble_cmd_options("GRN_20km", climate="index_forcing", ocean="th", use_spack=True)
+    assemble_cmd_options("GRN_20km", bootstrap=True, climate="index_forcing", ocean="th", use_spack=True)
 
 
 rule test_multirun_2:
@@ -147,6 +153,8 @@ rule test_multirun_2:
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
+    ts_times = 1,
+    ex_times = 1,
 
   output:
     main = "results/PISM_results/test_multirun/multirun_10_15.nc",
@@ -166,6 +174,8 @@ rule test_multirun_3:
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5,
+    ts_times = 1,
+    ex_times = 1,
 
   output:
     main = "results/PISM_results/test_multirun/multirun_15_20.nc",
@@ -173,3 +183,27 @@ rule test_multirun_3:
     ts   = "results/PISM_results/test_multirun/ts_multirun_15_20.nc",
   shell:
     assemble_cmd_options("GRN_20km", climate="index_forcing", time="duration", ocean="th", use_spack=True)
+
+
+
+rule gi_heinrich_first:
+  input:
+    main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+    restart   = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+    sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
+  resources:
+    nodes = 1,
+    partition = "standard96:test",
+    time = "1:00:00",
+  params:
+    spackpackage = "pism-sbeyer@current",
+    start = 0,
+    stop = 10,
+    ts_times = 1,
+    ex_times = 1,
+  output:
+    main = "results/PISM_results_large/gi_heinrich/gi_heinrich_0_10.nc",
+    ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_0_10.nc",
+    ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_0_10.nc",
+  shell:
+    assemble_cmd_options("NHEM_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, use_spack=True)
