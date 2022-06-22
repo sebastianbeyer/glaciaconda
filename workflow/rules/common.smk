@@ -7,4 +7,4 @@ GRID = {
 
 
 wildcard_constraints:
-  grid_name="\w+_\d{1,2}km"
+  grid_name="[A-Z]{3,4}_\d{1,2}km"
