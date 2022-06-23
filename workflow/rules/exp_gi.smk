@@ -203,10 +203,10 @@ rule gi_heinrich_first:
     time = "1:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
-    start = 0,
-    stop = 10,
-    ts_times = 1,
-    ex_times = 1,
+    start = -120000,
+    stop = -119000,
+    ts_times = 10,
+    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_0_10.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_0_10.nc",
