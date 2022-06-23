@@ -46,7 +46,7 @@ def assemble_cmd_options(grid, climate, ocean,
         }
     oceans = {
         "pik": ["-ocean pik"],
-        "th": ["-ocean th"],
+        "th": ["-ocean th", "-ocean_th_file {input.main}"],
         }
 
     climate_forcings = {
