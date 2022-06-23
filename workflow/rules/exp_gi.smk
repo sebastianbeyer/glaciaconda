@@ -42,7 +42,7 @@ def assemble_cmd_options(grid, climate, ocean,
         "-thickness_calving_threshold 200"
         ]
     extra_vars = {
-        "standard": ["-extra_vars topg,thk,mask,velsurf_mag,velsurf,velbase_mag,tillwat,climatic_mass_balance,temppabase,ice_surface_temp,air_temp_snapshot,surface_runoff_flux,tendency_of_ice_amount_due_to_basal_mass_flux,tendency_of_ice_amount_due_to_discharge"],
+        "standard": ["-extra_vars topg,thk,mask,velsurf_mag,velsurf,velbase_mag,tillwat,tauc,temppabase,climatic_mass_balance,effective_precipitation,effective_air_temp"],
         }
     oceans = {
         "pik": ["-ocean pik"],
