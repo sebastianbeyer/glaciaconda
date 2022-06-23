@@ -212,4 +212,4 @@ rule gi_heinrich_first:
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_0_10.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_0_10.nc",
   shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
+    assemble_cmd_options("GRN_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
