@@ -213,3 +213,24 @@ rule gi_heinrich_first:
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_0_10.nc",
   shell:
     assemble_cmd_options("GRN_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
+
+rule gi_heinrich_2:
+  input:
+    main      = "results/PISM_file/glacialindex_tillphi_GRN_20km.nc",
+    restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_0_10.nc",
+    sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
+  resources:
+    nodes = 1,
+    partition = "standard96:test",
+    time = "1:00:00",
+  params:
+    spackpackage = "pism-sbeyer@current",
+    duration = 1000,
+    ts_times = 10,
+    ex_times = 100,
+  output:
+    main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-119000-118000.nc",
+    ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-119000-118000.nc",
+    ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-119000-118000.nc",
+  shell:
+    assemble_cmd_options("GRN_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
