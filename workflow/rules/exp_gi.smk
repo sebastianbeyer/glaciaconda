@@ -19,7 +19,13 @@ def assemble_cmd_options(grid, climate, ocean,
     always_on = [
         "-options_left True",
         "-tauc_slippery_grounding_lines True",
-        "-front_retreat_file {input.main}"
+        "-front_retreat_file {input.main}",
+        "-timestep_hit_multiples 1",
+        "-backup_interval 5",
+        "-stress_balance.sia.max_diffusivity 100000",
+        "-grid.registration corner",
+        "-z_spacing equal",
+        "-energy.enthalpy.temperate_ice_thermal_conductivity_ratio 0.01"
         ]
     grids = {
         "GRN_20km": ["-Mx  76 -My 141 -Mz 101 -Mbz 11 -Lz 4000 -Lbz 2000"],
@@ -105,7 +111,7 @@ def assemble_cmd_options(grid, climate, ocean,
     options = []
     if bootstrap:
         options += ["-bootstrap True"]
-    options += always_on + grids[grid] + dynamics + marine_ice_sheets + climate_forcings[climate] + calving + extra_vars[extra] + inout + times[time]
+    options += always_on + grids[grid] + dynamics + marine_ice_sheets + climate_forcings[climate] + calving + oceans[ocean]+ extra_vars[extra] + inout + times[time]
     if ocean == "th" and periodic:
         options += ["-ocean.th.periodic True"]
     if periodic:
@@ -188,8 +194,8 @@ rule test_multirun_3:
 
 rule gi_heinrich_first:
   input:
-    main      = "results/PISM_file/test_glacialindex_GRN_20km.nc",
-    restart   = "results/PISM_file/test_glacialindex_GRN_20km.nc",
+    main      = "results/PISM_file/glacialindex_tillphi_GRN_20km.nc",
+    restart   = "results/PISM_file/glacialindex_tillphi_GRN_20km.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
     nodes = 1,
@@ -206,4 +212,4 @@ rule gi_heinrich_first:
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_0_10.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_0_10.nc",
   shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, use_spack=True)
+    assemble_cmd_options("NHEM_20km", bootstrap=True, climate="index_forcing", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
