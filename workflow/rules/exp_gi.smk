@@ -198,9 +198,9 @@ rule gi_heinrich_first:
     restart   = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     start = -120000,
@@ -220,9 +220,9 @@ rule gi_heinrich_02:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-120000_-115000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -241,9 +241,9 @@ rule gi_heinrich_03:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-115000_-110000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -262,9 +262,9 @@ rule gi_heinrich_04:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-110000_-105000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -283,9 +283,9 @@ rule gi_heinrich_05:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-105000_-100000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -304,9 +304,9 @@ rule gi_heinrich_06:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-100000_-95000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -325,9 +325,9 @@ rule gi_heinrich_07:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-95000_-90000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -346,9 +346,9 @@ rule gi_heinrich_08:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-90000_-85000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -367,9 +367,9 @@ rule gi_heinrich_09:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-85000_-80000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -388,9 +388,9 @@ rule gi_heinrich_10:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-80000_-75000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -409,9 +409,9 @@ rule gi_heinrich_11:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-75000_-70000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -430,9 +430,9 @@ rule gi_heinrich_12:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-70000_-65000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -451,9 +451,9 @@ rule gi_heinrich_13:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-65000_-60000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -472,9 +472,9 @@ rule gi_heinrich_14:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-60000_-55000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -493,9 +493,9 @@ rule gi_heinrich_15:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-55000_-50000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -514,9 +514,9 @@ rule gi_heinrich_16:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-50000_-45000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -535,9 +535,9 @@ rule gi_heinrich_17:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-45000_-40000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -556,9 +556,9 @@ rule gi_heinrich_18:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-40000_-35000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -577,9 +577,9 @@ rule gi_heinrich_19:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-35000_-30000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -598,9 +598,9 @@ rule gi_heinrich_20:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-30000_-25000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -619,9 +619,9 @@ rule gi_heinrich_21:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-25000_-20000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -640,9 +640,9 @@ rule gi_heinrich_22:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-20000_-15000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -661,9 +661,9 @@ rule gi_heinrich_23:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-15000_-10000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
@@ -682,9 +682,9 @@ rule gi_heinrich_24:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-10000_-5000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 1,
-    partition = "standard96:test",
-    time = "1:00:00",
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     spackpackage = "pism-sbeyer@current",
     duration = 5000,
