@@ -26,9 +26,15 @@ include: "rules/sediment.smk"
 ##### pism experiments ####
 include: "rules/experiment_files.smk"
 
+##### data sets
+include: "rules/present_day_greenland.smk"
+
 
 include: "rules/pism_exps.smk"
 include: "rules/exp_gi.smk"
+
+# postprocessing
+include: "rules/postprocessing.smk"
 
 ##### target rules #####
 
