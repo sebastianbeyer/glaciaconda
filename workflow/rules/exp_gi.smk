@@ -451,7 +451,7 @@ rule gi_heinrich_13:
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-65000_-60000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   resources:
-    nodes = 8,
+    nodes = 9,
     partition = "standard96",
     time = "12:00:00",
   params:
