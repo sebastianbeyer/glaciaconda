@@ -172,7 +172,7 @@ rule assembled_model_MillenialScaleOscillations:
         thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
         oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
-        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_{grid_name}.nc"
+        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
     output:
         main      = "results/PISM_file/MillenialScaleOscillations_{grid_name}.nc",
         refheight = "results/PISM_file/MillenialScaleOscillations_{grid_name}_refheight.nc",
