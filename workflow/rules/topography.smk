@@ -7,7 +7,6 @@ rule topo:
         "results/oceankill/oceankill_ICE7GNA_NHEM_20km.nc",
 
 rule ETOPO1:
-    conda: "../envs/base.yaml"
     resources:
         time = "00:10:00"
     input:
@@ -27,7 +26,6 @@ rule ETOPO1:
         """
 
 rule ICE7GNA:
-    conda: "../envs/base.yaml"
     resources:
         time = "00:10:00"
     input:

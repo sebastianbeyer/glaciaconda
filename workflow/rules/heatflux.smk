@@ -5,7 +5,6 @@ rule shapiro:
       "results/heatflux/shapiro/shapiro_NHEM_20km.nc",
 
 rule heatflux_shapiro:
-    conda: "../envs/base.yaml"
     resources:
         time = "00:10:00"
     input:

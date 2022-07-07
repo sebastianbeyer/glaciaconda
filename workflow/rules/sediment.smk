@@ -7,7 +7,6 @@ rule laskemasters:
         expand("results/sediment/tillphi/tillphi_LaskeMasters_taufac{factor}_NHEM_20km.nc", factor=[0.006, 0.008, 0.01, 0.0125, 0.02, 0.04, 0.1, 1  ]),
 
 rule sediment:
-    conda: "../envs/base.yaml"
     resources:
         time = "00:10:00"
     input:
@@ -19,7 +18,6 @@ rule sediment:
       "python3 workflow/scripts/prepare_LaskeMasters.py {input.grid} {input.sediment} {output} "
 
 rule tillphi:
-    conda: "../envs/base.yaml"
     resources:
         time = "00:10:00"
     input:
