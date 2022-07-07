@@ -93,4 +93,30 @@ rule glacialindex_offline:
       "python3 workflow/scripts/prepare_glacialindex_offline.py {input.warm} {input.cold} {input.warm_ocean} {input.cold_ocean} {input.warm_refheight} {input.cold_refheight} {input.index} {output.main} {output.refheight}"
 
 
+rule CESM_atmo_MillenialScaleOscillations:
+    input:
+        atmo   = "datasets/CESM/millenialscaleoscillations/CESM_atmo_monthlymean_cycle_2578-4344.nc",
+        grid   = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        main      ="results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_atmo.nc",
+    shell:
+        "cdo remapycon,{input.grid} {input.atmo} {output.main}"
+
+rule CESM_ocean_MillenialScaleOscillations:
+    input:
+        ocean   = "datasets/CESM/millenialscaleoscillations/CESM_ocean_yearlymean_cycle_2578-4344.nc",
+        grid   = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        main      ="results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
+    shell:
+        "cdo remapycon,{input.grid} {input.ocean} {output.main}"
+
+rule CESM_atmo_MillenialScaleOscillations_refHeight:
+    input:
+        refheight   = "datasets/CESM/millenialscaleoscillations/CESM_refheight.nc",
+        grid   = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
+    shell:
+        "cdo remapycon,{input.grid} {input.refheight} {output.refheight}"
 
