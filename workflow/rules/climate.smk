@@ -100,7 +100,7 @@ rule CESM_atmo_MillenialScaleOscillations:
     output:
         main      ="results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_atmo.nc",
     shell:
-        "cdo remapycon,{input.grid} {input.atmo} {output.main}"
+        "cdo remapbil,{input.grid} {input.atmo} {output.main}"
 
 rule CESM_ocean_MillenialScaleOscillations:
     input:
@@ -109,7 +109,7 @@ rule CESM_ocean_MillenialScaleOscillations:
     output:
         main      ="results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
     shell:
-        "cdo remapycon,{input.grid} {input.ocean} {output.main}"
+        "cdo remapbil,{input.grid} {input.ocean} {output.main}"
 
 rule CESM_atmo_MillenialScaleOscillations_refHeight:
     input:
