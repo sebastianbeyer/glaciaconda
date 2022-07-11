@@ -179,7 +179,8 @@ rule assembled_model_MillenialScaleOscillations:
     shell:
         """
         ncks {input.atmo} {output.main}
-        ncks -A {input.ocean} {output.main}
+        # don't add ocean, it has a different time base
+        # ncks -A {input.ocean} {output.main}
         ncks -A {input.heatflux} {output.main}
         ncks -A -v topg {input.topg} {output.main}
         ncks -A -v thk {input.thk} {output.main}
