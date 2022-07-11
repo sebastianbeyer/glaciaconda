@@ -23,9 +23,11 @@ def assemble_cmd_options(grid, climate, ocean,
         "-timestep_hit_multiples 1",
         "-backup_interval 5",
         "-stress_balance.sia.max_diffusivity 100000",
+        "-geometry.ice_free_thickness_standard 10",
         "-grid.registration corner",
         "-z_spacing equal",
-        "-energy.enthalpy.temperate_ice_thermal_conductivity_ratio 0.01"
+        "-energy.enthalpy.temperate_ice_thermal_conductivity_ratio 0.01",
+        "-energy.basal_melt.use_grounded_cell_fraction False",
         ]
     grids = {
         "GRN_20km": ["-Mx  76 -My 141 -Mz 101 -Mbz 11 -Lz 4000 -Lbz 2000"],
@@ -39,7 +41,8 @@ def assemble_cmd_options(grid, climate, ocean,
         ]
     calving = [
         "-calving eigen_calving,thickness_calving",
-        "-thickness_calving_threshold 200"
+        "-thickness_calving_threshold 200",
+        "-calving.eigen_calving.K = 1.e+17",
         ]
     extra_vars = {
         "standard": ["-extra_vars topg,thk,mask,velsurf_mag,velsurf,velbase_mag,tillwat,tauc,temppabase,climatic_mass_balance,effective_precipitation,effective_air_temp"],
