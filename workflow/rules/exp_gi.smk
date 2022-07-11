@@ -42,7 +42,7 @@ def assemble_cmd_options(grid, climate, ocean,
     calving = [
         "-calving eigen_calving,thickness_calving",
         "-thickness_calving_threshold 200",
-        "-calving.eigen_calving.K = 1.e+17",
+        "-calving.eigen_calving.K 1.e+17",
         ]
     extra_vars = {
         "standard": ["-extra_vars topg,thk,mask,velsurf_mag,velsurf,velbase_mag,tillwat,tauc,temppabase,climatic_mass_balance,effective_precipitation,effective_air_temp"],
