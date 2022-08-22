@@ -4,18 +4,6 @@ This handles input data preprocessing (download, conversion of units, remapping,
 and postprocessing (visualization).
 
 
-```
-snakemake --cores 4 results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc
-```
-
-#### Show the graph
-```
-snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc | dot -Tpng > dag.png
-```
-
-![](./dag.png)
-
-
 > **Note**
 > pynco must be installed from github!
 >
@@ -23,3 +11,29 @@ snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatol
 > ```
 > git+https://github.com/nco/pynco/
 > ```
+
+### Examples
+
+#### prepare dataset
+
+```
+snakemake --cores 4 results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc
+```
+
+#### submit slurm
+```
+snakemake --profile slurmsimple gi_heinrich_first
+```
+
+#### Show the graph
+```
+snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc | dot -Tpng > dag.png
+```
+
+![](./img/dag.png)
+
+#### plots
+
+![Heinrich events](./img/heinrich_zwischenbericht.png)
+![Heinrich events](./img/ex_heinrich_CESM_35ka_sediment_20km.nc_nice_vel188.png)
+
