@@ -1,9 +1,25 @@
-Maybe this could work for generating my forcing files
+[Snakemake](https://snakemake.github.io/) workflow for my PISM experiments.
+This handles input data preprocessing (download, conversion of units, remapping, merging), model runs
+(can submit to SLURM on HLRN directly), tuning (expanding variable combinations via itertools product)
+and postprocessing (visualization).
 
 
-## notes
+```
+snakemake --cores 4 results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc
+```
 
-pynco must be installed from github!
+#### Show the graph
+```
+snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc | dot -Tpng > dag.png
+```
+
+!(./dag.png)
+
+
+> **Note**
+> This is a note
+>
+> pynco must be installed from github!
 
 put this in the environment:
 ```
