@@ -13,15 +13,13 @@ snakemake --cores 4 results/PISM_file/MillenialScaleOscillations_climatology_NHE
 snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km.nc | dot -Tpng > dag.png
 ```
 
-!(./dag.png)
+![](./dag.png)
 
 
 > **Note**
-> This is a note
->
 > pynco must be installed from github!
-
-put this in the environment:
-```
-git+https://github.com/nco/pynco/
-```
+>
+> put this in the environment:
+> ```
+> git+https://github.com/nco/pynco/
+> ```
