@@ -34,6 +34,6 @@ snakemake --forceall --dag results/PISM_file/MillenialScaleOscillations_climatol
 
 #### plots
 
-![Heinrich events](./img/heinrich_zwischenbericht.png)
-![Heinrich events](./img/ex_heinrich_CESM_35ka_sediment_20km.nc_nice_vel188.png)
+![Heinrich events](./img/heinrich_zwischenbericht.png | width = 200)
+![Heinrich events](./img/ex_heinrich_CESM_35ka_sediment_20km.nc_nice_vel188.png | width = 200)
 
