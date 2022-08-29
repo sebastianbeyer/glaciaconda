@@ -1,5 +1,5 @@
 configfile: "config/config.yaml"
-print(config)
+#print(config)
 
 def assemble_cmd_options(grid, climate, ocean,
                          bootstrap=True, periodic=True,
