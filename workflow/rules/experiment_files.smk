@@ -190,6 +190,34 @@ rule assembled_model_MillenialScaleOscillations:
         cp {input.refheight} {output.refheight}
         """
 
+rule assembled_model_MillenialScaleOscillations_climatology:
+    input:
+        atmo      = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
+        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T.nc",
+        #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
+        heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
+        topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
+        thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+        oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
+        refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
+        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
+    output:
+        main      = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}.nc",
+        delta_T   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_T.nc",
+        refheight = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_refheight.nc",
+    shell:
+        """
+        ncks {input.atmo} {output.main}
+        # don't add ocean, it has a different time base
+        ncks -A {input.heatflux} {output.main}
+        ncks -A -v topg {input.topg} {output.main}
+        ncks -A -v thk {input.thk} {output.main}
+        ncks -A {input.oceankill} {output.main}
+        ncks -A {input.tillphi} {output.main}
+
+        cp {input.refheight} {output.refheight}
+        cp {input.delta_T} {output.delta_T}
+        """
 
 # note that you must redefine all components of input when you inherit from it.
 # not just the one you are changing!

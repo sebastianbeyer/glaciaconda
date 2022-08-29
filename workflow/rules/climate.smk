@@ -120,3 +120,30 @@ rule CESM_atmo_MillenialScaleOscillations_refHeight:
     shell:
         "cdo remapycon,{input.grid} {input.refheight} {output.refheight}"
 
+
+
+rule CESM_atmo_MSO_climatology:
+    input:
+        atmo   = "datasets/CESM/millenialscaleoscillations/CESM_cycle_climatology.nc",
+        grid   = lambda wildcards: GRID[wildcards.grid_name],
+    output:
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
+    shell:
+        """
+        cdo remapycon,{input.grid} {input.atmo} {output.main}
+        python3 workflow/scripts/set_climatology_time.py {output.main}
+        """
+
+rule CESM_atmo_MSO_climatology_delta_T:
+    input:
+        time_series = "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean.nc",
+        climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
+    output:
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T.nc"
+    shell:
+        """
+        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing 63
+        ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
+        mv tmp_with_bnds.nc {output.main}
+        """
+
