@@ -5,6 +5,7 @@ def assemble_cmd_options(grid, climate, ocean,
                          bootstrap=True, periodic=True,
                          extra="standard",
                          time="startstop",
+                         dynamics="heinrich",
                          do_bed_deformation=False,
                          do_sealevel=False,
                          use_spack=False,
@@ -78,10 +79,10 @@ def assemble_cmd_options(grid, climate, ocean,
     dynamics = [
         "-stress_balance ssa+sia",
         "-pseudo_plastic True",
-        f"-sia_e {config['dynamics']['heinrich']['sia_e']}",
-        f"-ssa_e {config['dynamics']['heinrich']['ssa_e']}",
-        f"-pseudo_plastic_q {config['dynamics']['heinrich']['pseudo_plastic_q']}",
-        f"-till_effective_fraction_overburden {config['dynamics']['heinrich']['till_effective_fraction_overburden']}",
+        f"-sia_e {config['dynamics'][dynamics]['sia_e']}",
+        f"-ssa_e {config['dynamics'][dynamics]['ssa_e']}",
+        f"-pseudo_plastic_q {config[dynamics]['heinrich']['pseudo_plastic_q']}",
+        f"-till_effective_fraction_overburden {config['dynamics'][dynamics]['till_effective_fraction_overburden']}",
         ]
 
     times = {

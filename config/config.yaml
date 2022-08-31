@@ -17,4 +17,12 @@ dynamics:
     pseudo_plastic_q: 0.25
     till_effective_fraction_overburden: 0.02
 
+  standard:
+    # this is the tuning that worked relatively well for Greenland on 20km
+    sia_e: 5
+    ssa_e: 1
+    pseudo_plastic_q: 0.4
+    till_effective_fraction_overburden: 0.02
+
+
 
