@@ -16,7 +16,6 @@ report: "report/workflow.rst"
 
 include: "rules/sealevel.smk"
 include: "rules/common.smk"
-include: "rules/assemble.smk"
 include: "rules/climate.smk"
 include: "rules/topography.smk"
 include: "rules/heatflux.smk"
