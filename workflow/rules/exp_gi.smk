@@ -239,464 +239,222 @@ rule gi_heinrich_02:
   shell:
     assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_03:
+use rule gi_heinrich_02 as gi_heinrich_03 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-115000_-110000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-110000_-105000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-110000_-105000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-110000_-105000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_04:
+use rule gi_heinrich_02 as gi_heinrich_04 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-110000_-105000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-105000_-100000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-105000_-100000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-105000_-100000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_05:
+use rule gi_heinrich_02 as gi_heinrich_05 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-105000_-100000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-100000_-95000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-100000_-95000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-100000_-95000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_06:
+use rule gi_heinrich_02 as gi_heinrich_06 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-100000_-95000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-95000_-90000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-95000_-90000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-95000_-90000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_07:
+use rule gi_heinrich_02 as gi_heinrich_07 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-95000_-90000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-90000_-85000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-90000_-85000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-90000_-85000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_08:
+use rule gi_heinrich_02 as gi_heinrich_08 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-90000_-85000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-85000_-80000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-85000_-80000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-85000_-80000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_09:
+use rule gi_heinrich_02 as gi_heinrich_09 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-85000_-80000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-80000_-75000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-80000_-75000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-80000_-75000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_10:
+use rule gi_heinrich_02 as gi_heinrich_10 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-80000_-75000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-75000_-70000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-75000_-70000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-75000_-70000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_11:
+use rule gi_heinrich_02 as gi_heinrich_11 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-75000_-70000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-70000_-65000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-70000_-65000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-70000_-65000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_12:
+use rule gi_heinrich_02 as gi_heinrich_12 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-70000_-65000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-65000_-60000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-65000_-60000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-65000_-60000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_13:
+use rule gi_heinrich_02 as gi_heinrich_13 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-65000_-60000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 9,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-60000_-55000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-60000_-55000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-60000_-55000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_14:
+use rule gi_heinrich_02 as gi_heinrich_14 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-60000_-55000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-55000_-50000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-55000_-50000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-55000_-50000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_15:
+use rule gi_heinrich_02 as gi_heinrich_15 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-55000_-50000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-50000_-45000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-50000_-45000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-50000_-45000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_16:
+use rule gi_heinrich_02 as gi_heinrich_16 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-50000_-45000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-45000_-40000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-45000_-40000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-45000_-40000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_17:
+use rule gi_heinrich_02 as gi_heinrich_17 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-45000_-40000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-40000_-35000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-40000_-35000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-40000_-35000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_18:
+use rule gi_heinrich_02 as gi_heinrich_18 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-40000_-35000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-35000_-30000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-35000_-30000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-35000_-30000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_19:
+use rule gi_heinrich_02 as gi_heinrich_19 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-35000_-30000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-30000_-25000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-30000_-25000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-30000_-25000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_20:
+use rule gi_heinrich_02 as gi_heinrich_20 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-30000_-25000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-25000_-20000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-25000_-20000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-25000_-20000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_21:
+use rule gi_heinrich_02 as gi_heinrich_21 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-25000_-20000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-20000_-15000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-20000_-15000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-20000_-15000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_22:
+use rule gi_heinrich_02 as gi_heinrich_22 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-20000_-15000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-15000_-10000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-15000_-10000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-15000_-10000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_23:
+use rule gi_heinrich_02 as gi_heinrich_23 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-15000_-10000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-10000_-5000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-10000_-5000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-10000_-5000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
 
-rule gi_heinrich_24:
+use rule gi_heinrich_02 as gi_heinrich_24 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     restart   = "results/PISM_results_large/gi_heinrich/gi_heinrich_-10000_-5000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
-  resources:
-    nodes = 8,
-    partition = "standard96",
-    time = "12:00:00",
-  params:
-    spackpackage = "pism-sbeyer@current",
-    duration = 5000,
-    ts_times = 10,
-    ex_times = 100,
   output:
     main = "results/PISM_results_large/gi_heinrich/gi_heinrich_-5000_-0000.nc",
     ex   = "results/PISM_results_large/gi_heinrich/ex_gi_heinrich_-5000_-0000.nc",
     ts   = "results/PISM_results_large/gi_heinrich/ts_gi_heinrich_-5000_-0000.nc",
-  shell:
-    assemble_cmd_options("NHEM_20km", bootstrap=False, climate="index_forcing", time="duration", ocean="th", do_sealevel=True, do_bed_deformation=True, use_spack=True)
