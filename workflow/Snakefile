@@ -1,15 +1,10 @@
 from snakemake.utils import min_version
-
-##### set minimum snakemake version #####
 #min_version("6.4.1")
 
-
-##### setup report #####
-#configfile: "config/config.yaml"
+configfile: "config/config.yaml"
 
 
 report: "report/workflow.rst"
-
 
 
 ##### load rules #####

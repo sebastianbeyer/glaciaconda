@@ -1,0 +1,3 @@
+name,              pdd_factor_ice, pdd_factor_snow, pdd_refreeze, airtemp_all_rain, airtemp_all_snow, lapserate_temp, sia_e, ssa_e, ppq,  till_fraction, calving_thk_thresh, calving_eigen_thresh
+mprange_stddyn,    0.019,          0.005,           0.1,          275.15,           271.15,           5,              5,     1,     0.4,  0.02,          200,                1e17 
+mprange_clemdyn,   0.019,          0.005,           0.1,          275.15,           271.15,           5,              2,     1,     0.25, 0.02,          200,                1e17 

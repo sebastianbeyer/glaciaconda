@@ -1,28 +1,42 @@
 
-climate:
-  mprange:
-    pdd_factor_ice: 0.019
-    pdd_factor_snow: 0.005
-    pdd_refreeze: 0.1
-    temp_lapse_rate: 5
-    air_temp_all_precip_as_rain: 275.15
-    air_temp_all_precip_as_snow: 271.15
+use_spack: False
+header_local: "mpirun -np 4 ~/pism-sbeyer/bin/pismr \\"
 
-dynamics:
-  heinrich:
-    # this is the tuning that worked well for Heinrich runs (not too much other
-    # stuff tested with it so far)
-    sia_e: 2
-    ssa_e: 1
-    pseudo_plastic_q: 0.25
-    till_effective_fraction_overburden: 0.02
-
-  standard:
-    # this is the tuning that worked relatively well for Greenland on 20km
-    sia_e: 5
-    ssa_e: 1
-    pseudo_plastic_q: 0.4
-    till_effective_fraction_overburden: 0.02
+times:
+  ts_times: 10
+  ex_times: 100
 
 
 
+PISM_grids: 
+    GRN_20km: "-Mx  76 -My 141 -Mz 101 -Mbz 11 -Lz 4000 -Lbz 2000"
+    NHEM_20km: "-Mx 625 -My 625 -Mz 101 -Mbz 11 -Lz 5000 -Lbz 2000"
+    
+
+
+PISM_always_on: 
+  - "-options_left True"
+  - "-tauc_slippery_grounding_lines True"
+  - "-timestep_hit_multiples 1"
+  - "-backup_interval 5"
+  - "-stress_balance.sia.max_diffusivity 100000"
+  - "-geometry.ice_free_thickness_standard 10"
+  - "-grid.registration corner"
+  - "-z_spacing equal"
+  - "-energy.enthalpy.temperate_ice_thermal_conductivity_ratio 0.01"
+  - "-energy.basal_melt.use_grounded_cell_fraction False"
+  
+PISM_marine_ice_sheets:
+  - "-cfbc True"
+  - "-kill_icebergs True"
+  - "-part_grid True"
+  - "-subgl"
+
+PISM_extra_vars: "-extra_vars topg,thk,mask,velsurf_mag,velsurf,velbase_mag,tillwat,tauc,temppabase,climatic_mass_balance,effective_precipitation,effective_air_temp"
+
+default_resources_large:
+    nodes: 8
+    partition: standard96
+    time: "12:00:00"
+
+header_local: "mpirun -np 4 ~/pism-sbeyer/bin/pismr \\"
