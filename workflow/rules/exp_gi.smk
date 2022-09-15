@@ -21,7 +21,7 @@ def get_dynamics_from_parameters(wildcards):
         "-pseudo_plastic True",
         f"-sia_e {PISM_parameters.loc[name]['sia_e']}",
         f"-ssa_e {PISM_parameters.loc[name]['ssa_e']}",
-        f"-pseudo_pastic_q {PISM_parameters.loc[name]['ppq']}",
+        f"-pseudo_plastic_q {PISM_parameters.loc[name]['ppq']}",
         f"-till_effective_fraction_overburden {PISM_parameters.loc[name]['till_fraction']}",
         ]
     dynamics_string = " \\\n".join(dynamics)
@@ -37,11 +37,11 @@ def get_calving_from_parameters(wildcards):
     calving_string = " \\\n".join(calving)
     return calving_string
 
-def get_climate_indexforcing_from_parameters(wildcards):
+def get_climate_indexforcing_from_parameters(wildcards, input):
     name = wildcards.gi_paramset
     climate = [
         "-atmosphere index_forcing",
-        "-atmosphere_index_file {input.main}",
+        f"-atmosphere_index_file {input.main}",
         "-surface pdd",
         f"-surface.pdd.factor_ice {PISM_parameters.loc[name]['pdd_factor_ice']}",
         f"-surface.pdd.factor_snow {PISM_parameters.loc[name]['pdd_factor_snow']}",
@@ -81,10 +81,10 @@ rule gi_heinrich_first:
     time = config['default_resources_large']['time'],
   params:
     start = -120000,
-    stop = -115000,
+    stop =  -119990,
     ts_times = config['times']['ts_times'],
     ex_times = config['times']['ex_times'],
-    header = lambda wildcards: "spack load pism-sbeyer@current \n \n srun pismr \\" if config['use_spack'] else config['header_local'],
+    header = lambda wildcards: "spack load pism-sbeyer@current \n \nsrun pismr" if config['use_spack'] else config['header_local'],
     climate = get_climate_indexforcing_from_parameters,
     dynamics = get_dynamics_from_parameters,
     calving = get_calving_from_parameters,
@@ -94,7 +94,7 @@ rule gi_heinrich_first:
     grid = config['PISM_grids']['NHEM_20km'],
   shell:
     """
-{params.header} 
+{params.header} \\
 -bootstrap True \\
 -ocean.th.periodic True \\
 -atmosphere.given.periodic True \\
@@ -137,10 +137,10 @@ rule gi_heinrich_02:
     partition = config['default_resources_large']['partition'],
     time = config['default_resources_large']['time'],
   params:
-    duration = 5000,
+    duration = 10,
     ts_times = config['times']['ts_times'],
     ex_times = config['times']['ex_times'],
-    header = lambda wildcards: "spack load pism-sbeyer@current \n \n srun pismr \\" if config['use_spack'] else config['header_local'],
+    header = lambda wildcards: "spack load pism-sbeyer@current \n \n srun pismr" if config['use_spack'] else config['header_local'],
     climate = get_climate_indexforcing_from_parameters,
     dynamics = get_dynamics_from_parameters,
     calving = get_calving_from_parameters,
@@ -150,7 +150,7 @@ rule gi_heinrich_02:
     grid = config['PISM_grids']['NHEM_20km'],
   shell:
     """
-{params.header} 
+{params.header} \\
 -bootstrap False \\
 -ocean.th.periodic True \\
 -atmosphere.given.periodic True \\
