@@ -81,7 +81,7 @@ rule gi_heinrich_first:
     time = config['default_resources_large']['time'],
   params:
     start = -120000,
-    stop =  -119990,
+    stop =  -115000,
     ts_times = config['times']['ts_times'],
     ex_times = config['times']['ex_times'],
     header = lambda wildcards: "spack load pism-sbeyer@current \n \nsrun pismr" if config['use_spack'] else config['header_local'],
@@ -137,7 +137,7 @@ rule gi_heinrich_02:
     partition = config['default_resources_large']['partition'],
     time = config['default_resources_large']['time'],
   params:
-    duration = 10,
+    duration = 5000,
     ts_times = config['times']['ts_times'],
     ex_times = config['times']['ex_times'],
     header = lambda wildcards: "spack load pism-sbeyer@current \n \n srun pismr" if config['use_spack'] else config['header_local'],
