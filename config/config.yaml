@@ -1,5 +1,5 @@
 
-use_spack: False
+use_spack: True
 header_local: "mpirun -np 4 ~/pism-sbeyer/bin/pismr \\"
 
 times:
