@@ -1,0 +1,14 @@
+name: dataprep
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - matplotlib
+  - cmocean
+  - xarray
+  - dask
+  - tqdm
+  - proj
+  - netcdf4
+  - cartopy
+
