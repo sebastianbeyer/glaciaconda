@@ -6,13 +6,15 @@ atmo0=$1
 atmo1=$2
 ocean0=$3
 ocean1=$4
-index=$5
-heatflux=$6
-topg=$7
-thk=$8
-oceankill=$9
-till_phi=${10}
-output=${11}
+refheight0=$5
+refheight1=$6
+index=$7
+heatflux=$8
+topg=$9
+thk=${10}
+oceankill=${11}
+till_phi=${12}
+output=${13}
 
 # convert to netcdf3 because in 4 the renaming of dimensions does not
 # work
@@ -43,6 +45,18 @@ ncks -A atmo1_tmp2.nc "$output"
 rm tmp_atmo0_netcdf3.nc atmo0_tmp.nc atmo0_tmp2.nc
 rm tmp_atmo1_netcdf3.nc atmo1_tmp.nc atmo1_tmp2.nc
 
+## reference height
+ncrename -O -v referenceHeight,usurf_0 $refheight0 refheight0_tmp.nc
+ncrename -O -v referenceHeight,usurf_1 $refheight1 refheight1_tmp.nc
+
+ncatted -O -a standard_name,usurf_0,d,, refheight0_tmp.nc
+ncatted -O -a standard_name,usurf_1,d,, refheight1_tmp.nc
+
+ncks -A refheight0_tmp.nc "$output"
+ncks -A refheight1_tmp.nc "$output"
+
+rm refheight0_tmp.nc
+rm refheight1_tmp.nc
 
 # currently no index for the ocean is possible, so just use present day
 ncks -3 "$ocean0" tmp_ocean0_netcdf3.nc

@@ -69,21 +69,22 @@ rule assembled_model_glacialindex_fake:
 
 rule assembled_model_glacialindex_tillphi:
     input:
-        index     = "results/glacialindex/glacialindex.nc",
-        atmo1     = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_atmo.nc",
-        ocean1    = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_ocean.nc",
-        atmo0     = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_atmo.nc",
-        ocean0    = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_ocean.nc",
+        index      = "results/glacialindex/glacialindex.nc",
+        atmo1      = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_atmo.nc",
+        ocean1     = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_ocean.nc",
+        refheight1 = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
+        atmo0      = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_atmo.nc",
+        ocean0     = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_ocean.nc",
+        refheight0 = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_refHeight.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
         thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
         oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
-        refheight = "results/CESM/LGM_NOVEG/LGM_NOVEG_{grid_name}_refHeight.nc",
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
     output:
       main        = "results/PISM_file/glacialindex_tillphi_{grid_name}.nc",
     shell:
-        "workflow/scripts/assemble_model_glacialindex.sh {input.atmo0} {input.atmo1} {input.ocean0} {input.ocean1} {input.index} {input.heatflux} {input.topg} {input.thk} {input.oceankill} {input.tillphi} {output.main}"
+        "workflow/scripts/assemble_model_glacialindex.sh {input.atmo0} {input.atmo1} {input.ocean0} {input.ocean1} {input.refheight0} {input.refheight1} {input.index} {input.heatflux} {input.topg} {input.thk} {input.oceankill} {input.tillphi} {output.main}"
 
 rule modelfile_greenland_PD_yearmean:
     input:
