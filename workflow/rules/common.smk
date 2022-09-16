@@ -12,22 +12,9 @@ wildcard_constraints:
 import pandas as pd
 PISM_parameters = pd.read_csv("config/parameters.csv", skipinitialspace=True, index_col="name")
 
-    # climate_forcings = {
-    #     "PDD": [
-    #         "-atmosphere given,elevation_change",
-    #         "-atmosphere_lapse_rate_file {input.refheight}",
-    #         f"-temp_lapse_rate {config['climate']['mprange']['temp_lapse_rate']}",
-    #         "-surface pdd",
-    #         f"-surface.pdd.factor_ice {config['climate']['mprange']['pdd_factor_ice']}",
-    #         f"-surface.pdd.factor_snow {config['climate']['mprange']['pdd_factor_snow']}",
-    #         f"-surface.pdd.refreeze {config['climate']['mprange']['pdd_refreeze']}",
-    #         f"-surface.pdd.air_temp_all_precip_as_rain {config['climate']['mprange']['air_temp_all_precip_as_rain']}",
-    #         f"-surface.pdd.air_temp_all_precip_as_snow {config['climate']['mprange']['air_temp_all_precip_as_snow']}",
-    #       ],
-    #     }
 
 def get_dynamics_from_parameters(wildcards):
-    name = wildcards.gi_paramset
+    name = wildcards.paramset
     dynamics = [
         "-stress_balance ssa+sia",
         "-pseudo_plastic True",
@@ -40,7 +27,7 @@ def get_dynamics_from_parameters(wildcards):
     return dynamics_string
 
 def get_calving_from_parameters(wildcards):
-    name = wildcards.gi_paramset
+    name = wildcards.paramset
     calving = [
         "-calving eigen_calving,thickness_calving",
         f"-thickness_calving_threshold {PISM_parameters.loc[name]['calving_thk_thresh']}",
@@ -49,8 +36,44 @@ def get_calving_from_parameters(wildcards):
     calving_string = " \\\n".join(calving)
     return calving_string
 
+def get_climate_pdd_from_parameters(wildcards, input):
+    name = wildcards.paramset
+    climate = [
+        "-atmosphere given,elevation_change",
+        f"-atmosphere_lapse_rate_file {input.refheight}",
+        f"-temp_lapse_rate {PISM_parameters.loc[name]['lapserate_temp']}",
+        "-surface pdd",
+        f"-pdd_sd_file {input.main}",
+        f"-surface.pdd.factor_ice {PISM_parameters.loc[name]['pdd_factor_ice']}",
+        f"-surface.pdd.factor_snow {PISM_parameters.loc[name]['pdd_factor_snow']}",
+        f"-surface.pdd.refreeze {PISM_parameters.loc[name]['pdd_refreeze']}",
+        f"-surface.pdd.air_temp_all_precip_as_rain {PISM_parameters.loc[name]['airtemp_all_rain']}",
+        f"-surface.pdd.air_temp_all_precip_as_snow {PISM_parameters.loc[name]['airtemp_all_snow']}",
+        ]
+    climate_string = " \\\n".join(climate)
+    return climate_string
+
+def get_climate_pdd_deltaT_from_parameters(wildcards, input):
+    name = wildcards.paramset
+    climate = [
+        "-atmosphere given,delta_T,elevation_change",
+        f"-atmosphere_lapse_rate_file {input.refheight}",
+        f"-atmosphere.delta_T.file {input.delta_t}",
+        "-atmosphere.delta_T.periodic True",
+        f"-temp_lapse_rate {PISM_parameters.loc[name]['lapserate_temp']}",
+        "-surface pdd",
+        f"-pdd_sd_file {input.main}",
+        f"-surface.pdd.factor_ice {PISM_parameters.loc[name]['pdd_factor_ice']}",
+        f"-surface.pdd.factor_snow {PISM_parameters.loc[name]['pdd_factor_snow']}",
+        f"-surface.pdd.refreeze {PISM_parameters.loc[name]['pdd_refreeze']}",
+        f"-surface.pdd.air_temp_all_precip_as_rain {PISM_parameters.loc[name]['airtemp_all_rain']}",
+        f"-surface.pdd.air_temp_all_precip_as_snow {PISM_parameters.loc[name]['airtemp_all_snow']}",
+        ]
+    climate_string = " \\\n".join(climate)
+    return climate_string
+
 def get_climate_indexforcing_from_parameters(wildcards, input):
-    name = wildcards.gi_paramset
+    name = wildcards.paramset
     climate = [
         "-atmosphere index_forcing",
         f"-atmosphere_index_file {input.main}",

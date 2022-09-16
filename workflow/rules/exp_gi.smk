@@ -6,9 +6,9 @@ rule gi_heinrich_first:
     restart   = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-120000_-115000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-120000_-115000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-120000_-115000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-120000_-115000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-120000_-115000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-120000_-115000.nc",
   resources:
     nodes = config['default_resources_large']['nodes'],
     partition = config['default_resources_large']['partition'],
@@ -60,12 +60,12 @@ rule gi_heinrich_first:
 rule gi_heinrich_02:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-120000_-115000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-120000_-115000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-115000_-110000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi{gi_paramset}_-115000_-110000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi{gi_paramset}_-115000_-110000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-115000_-110000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi{paramset}_-115000_-110000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi{paramset}_-115000_-110000.nc",
   resources:
     nodes = config['default_resources_large']['nodes'],
     partition = config['default_resources_large']['partition'],
@@ -115,219 +115,219 @@ rule gi_heinrich_02:
 use rule gi_heinrich_02 as gi_heinrich_03 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-115000_-110000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-115000_-110000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-110000_-105000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-110000_-105000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-110000_-105000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-110000_-105000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-110000_-105000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-110000_-105000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_04 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-110000_-105000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-110000_-105000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-105000_-100000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-105000_-100000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-105000_-100000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-105000_-100000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-105000_-100000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-105000_-100000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_05 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-105000_-100000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-105000_-100000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-100000_-95000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-100000_-95000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-100000_-95000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-100000_-95000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-100000_-95000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-100000_-95000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_06 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-100000_-95000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-100000_-95000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-95000_-90000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-95000_-90000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-95000_-90000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-95000_-90000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-95000_-90000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-95000_-90000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_07 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-95000_-90000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-95000_-90000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-90000_-85000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-90000_-85000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-90000_-85000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-90000_-85000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-90000_-85000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-90000_-85000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_08 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-90000_-85000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-90000_-85000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-85000_-80000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-85000_-80000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-85000_-80000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-85000_-80000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-85000_-80000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-85000_-80000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_09 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-85000_-80000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-85000_-80000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-80000_-75000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-80000_-75000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-80000_-75000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-80000_-75000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-80000_-75000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-80000_-75000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_10 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-80000_-75000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-80000_-75000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-75000_-70000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-75000_-70000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-75000_-70000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-75000_-70000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-75000_-70000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-75000_-70000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_11 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-75000_-70000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-75000_-70000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-70000_-65000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-70000_-65000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-70000_-65000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-70000_-65000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-70000_-65000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-70000_-65000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_12 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-70000_-65000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-70000_-65000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-65000_-60000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-65000_-60000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-65000_-60000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-65000_-60000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-65000_-60000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-65000_-60000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_13 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-65000_-60000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-65000_-60000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-60000_-55000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-60000_-55000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-60000_-55000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-60000_-55000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-60000_-55000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-60000_-55000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_14 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-60000_-55000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-60000_-55000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-55000_-50000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-55000_-50000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-55000_-50000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-55000_-50000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-55000_-50000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-55000_-50000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_15 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-55000_-50000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-55000_-50000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-50000_-45000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-50000_-45000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-50000_-45000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-50000_-45000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-50000_-45000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-50000_-45000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_16 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-50000_-45000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-50000_-45000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-45000_-40000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-45000_-40000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-45000_-40000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-45000_-40000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-45000_-40000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-45000_-40000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_17 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-45000_-40000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-45000_-40000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-40000_-35000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-40000_-35000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-40000_-35000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-40000_-35000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-40000_-35000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-40000_-35000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_18 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-40000_-35000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-40000_-35000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-35000_-30000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-35000_-30000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-35000_-30000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-35000_-30000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-35000_-30000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-35000_-30000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_19 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-35000_-30000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-35000_-30000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-30000_-25000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-30000_-25000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-30000_-25000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-30000_-25000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-30000_-25000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-30000_-25000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_20 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-30000_-25000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-30000_-25000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-25000_-20000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-25000_-20000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-25000_-20000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-25000_-20000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-25000_-20000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-25000_-20000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_21 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-25000_-20000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-25000_-20000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-20000_-15000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-20000_-15000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-20000_-15000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-20000_-15000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-20000_-15000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-20000_-15000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_22 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-20000_-15000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-20000_-15000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-15000_-10000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-15000_-10000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-15000_-10000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-15000_-10000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-15000_-10000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-15000_-10000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_23 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-15000_-10000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-15000_-10000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-10000_-5000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-10000_-5000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-10000_-5000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-10000_-5000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-10000_-5000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-10000_-5000.nc",
 
 use rule gi_heinrich_02 as gi_heinrich_24 with:
   input:
     main      = "results/PISM_file/glacialindex_tillphi_NHEM_20km.nc",
-    restart   = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-10000_-5000.nc",
+    restart   = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-10000_-5000.nc",
     sealevel  = "datasets/sealevel/pism_dSL_Imbrie2006.nc"
   output:
-    main = "results/PISM_results_large/gi_{gi_paramset}/gi_{gi_paramset}_-5000_-0000.nc",
-    ex   = "results/PISM_results_large/gi_{gi_paramset}/ex_gi_{gi_paramset}_-5000_-0000.nc",
-    ts   = "results/PISM_results_large/gi_{gi_paramset}/ts_gi_{gi_paramset}_-5000_-0000.nc",
+    main = "results/PISM_results_large/gi_{paramset}/gi_{paramset}_-5000_-0000.nc",
+    ex   = "results/PISM_results_large/gi_{paramset}/ex_gi_{paramset}_-5000_-0000.nc",
+    ts   = "results/PISM_results_large/gi_{paramset}/ts_gi_{paramset}_-5000_-0000.nc",
