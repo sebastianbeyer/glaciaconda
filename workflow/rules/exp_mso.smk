@@ -29,7 +29,6 @@ rule MillenialScaleOscillations_clim_dT:
     """
 {params.header} \\
 -bootstrap True \\
--ocean.th.periodic True \\
 -atmosphere.given.periodic True \\
 -surface.pdd.std_dev.periodic True \\
 -i {input.main} \\
@@ -41,8 +40,7 @@ rule MillenialScaleOscillations_clim_dT:
 -ts_times {params.ts_times} \\
 -extra_times {params.ex_times} \\
 -front_retreat_file {input.main} \\
--ocean th \\
--ocean_th_file {input.main} \\
+-ocean pik \\
 {params.grid} \\
 {params.extra_vars} \\
 {params.climate} \\
