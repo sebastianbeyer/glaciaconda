@@ -97,14 +97,17 @@ rule CESM_ocean_MillenialScaleOscillations:
     shell:
         "cdo remapbil,{input.grid} {input.ocean} {output.main}"
 
+
 rule CESM_atmo_MillenialScaleOscillations_refHeight:
     input:
         refheight   = "datasets/CESM/millenialscaleoscillations/CESM_refheight.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
     output:
         refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
+    conda:
+        "../envs/dataprep.yaml",
     shell:
-        "cdo remapycon,{input.grid} {input.refheight} {output.refheight}"
+        "cdo remapbil,{input.grid} {input.refheight} {output.refheight}"
 
 
 
@@ -113,10 +116,12 @@ rule CESM_atmo_MSO_climatology:
         atmo   = "datasets/CESM/millenialscaleoscillations/CESM_cycle_climatology.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
     output:
-        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
+    conda:
+        "../envs/dataprep.yaml",
     shell:
         """
-        cdo remapycon,{input.grid} {input.atmo} {output.main}
+        cdo remapbil,{input.grid} {input.atmo} {output.main}
         python3 workflow/scripts/set_climatology_time.py {output.main}
         """
 
@@ -126,6 +131,8 @@ rule CESM_atmo_MSO_climatology_delta_T:
         climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
     output:
         main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T.nc"
+    conda:
+        "../envs/dataprep.yaml",
     shell:
         """
         python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing 63
