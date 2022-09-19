@@ -206,6 +206,9 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         main      = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}.nc",
         delta_T   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_T.nc",
         refheight = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_refheight.nc",
+    conda:
+        "../envs/dataprep.yaml",
+
     shell:
         """
         ncks {input.atmo} {output.main}
