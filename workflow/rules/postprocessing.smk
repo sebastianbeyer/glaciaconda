@@ -37,3 +37,16 @@ rule plot_MSO_1d:
     "../envs/plotting.yaml",
   shell:
     "python3 workflow/scripts/plot/plot_surges_1d.py {input.main} {input.regions} {output.main}"
+
+
+rule plot_sealevel:
+  input:
+    main = "results/PISM_results/MillenialScaleOscillations_climatology/ex_MillenialScaleOscillations_climatology_NHEM_20km.nc",
+    ref_sealevel = "",
+    regions = "results/NHEM_regions_for_plots/plot_regions_NHEM_20km.nc",
+  output:
+    main = "results/plots/MSO_climatology/MSO_climatolotgy_NHEM20km_surges.png",
+  conda:
+    "../envs/plotting.yaml",
+  shell:
+    "python3 workflow/scripts/plot/plot_surges_1d.py {input.main} {input.regions} {output.main}"
