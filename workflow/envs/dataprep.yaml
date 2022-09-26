@@ -1,0 +1,24 @@
+name: dataprep
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - matplotlib
+  - xarray
+  - dask
+  - cdo
+  - nco
+  - tqdm
+  - proj
+  - netcdf4
+  - python-cdo
+  - gridfill
+  - cartopy
+  - ca-certificates
+  - certifi
+  - openssl
+  - opencv
+  - pip
+  - pip:
+    - git+https://github.com/nco/pynco/
+
