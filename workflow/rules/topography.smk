@@ -83,6 +83,8 @@ rule glac1d_120kto30k:
 rule glac1d_singleyear:
     resources:
       time = "00:10:00",
+    conda:
+        "../envs/dataprep.yaml",
     input:
         "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_120kto30k_thk_{grid_name}.nc",
     params:
