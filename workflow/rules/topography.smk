@@ -41,16 +41,17 @@ rule glac1d_download_nn9927NAGrB120kto30k:
     output:
         "datasets/glac1d_website/GLAC1Dnn9927NAGrB120kto30k.nc",
     shell:
-    """
-    wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB120kto30k.nc
-    """
-rule glac1d_download_GLAC1Dnn9927NAGrB30kto0k.nc:
+        """
+        wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB120kto30k.nc
+        """
+
+rule glac1d_download_GLAC1Dnn9927NAGrB30kto0k:
     output:
         "datasets/glac1d_website/GLAC1Dnn9927NAGrB30kto0k.nc",
     shell:
-    """
-    wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB30kto0k.nc
-    """
+        """
+        wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB30kto0k.nc
+        """
 
 rule glac1d_120kto30k:
     resources:
