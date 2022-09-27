@@ -7,6 +7,8 @@ rule shapiro:
 rule heatflux_shapiro:
     resources:
         time = "00:10:00"
+    conda:
+        "../envs/dataprep.yaml",
     input:
         heatflux = "datasets/shapiro/hfmap_Shapiro2004_global_1deg.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
