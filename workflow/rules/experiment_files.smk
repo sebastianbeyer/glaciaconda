@@ -198,7 +198,7 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+        thk       = "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_-38000_thk_NHEM_20km.nc",
         oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
