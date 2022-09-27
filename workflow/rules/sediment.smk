@@ -9,6 +9,8 @@ rule laskemasters:
 rule sediment:
     resources:
         time = "00:10:00"
+    conda:
+        "../envs/dataprep.yaml",
     input:
       sediment = "datasets/LaskeMasters/sedimentmap_Laske_Masters.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
@@ -20,6 +22,8 @@ rule sediment:
 rule tillphi:
     resources:
         time = "00:10:00"
+    conda:
+        "../envs/dataprep.yaml",
     input:
       topg = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
       sediment = "results/sediment/{sediment_data}/{sediment_data}_{grid_name}.nc",
