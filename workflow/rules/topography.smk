@@ -9,6 +9,8 @@ rule topo:
 rule ETOPO1:
     resources:
         time = "00:10:00"
+    conda:
+        "../envs/dataprep.yaml",
     input:
         topg = "datasets/ETOPO1/ETOPO1_Bed_g_gmt4.grd",
         thk  = "datasets/ETOPO1/ETOPO1_Ice_g_gmt4.grd",
@@ -29,6 +31,8 @@ rule ETOPO1:
 rule ICE7GNA:
     resources:
         time = "00:10:00"
+    conda:
+        "../envs/dataprep.yaml",
     input:
         main = "datasets/ICE-7G_NA/I7G_NA.VM7_1deg.21.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
@@ -98,6 +102,8 @@ rule glac1d_singleyear:
         """
 
 rule oceankillmask:
+    conda:
+        "../envs/dataprep.yaml",
     input:
       "results/topography/{topography}/{topography}_{grid_name}.nc"
     output:
