@@ -56,6 +56,8 @@ rule glac1d_download_GLAC1Dnn9927NAGrB30kto0k:
 rule glac1d_120kto30k:
     resources:
       time = "00:10:00",
+    conda:
+        "../envs/dataprep.yaml",
     input:
         main = "datasets/glac1d_website/GLAC1Dnn9927NAGrB120kto30k.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
