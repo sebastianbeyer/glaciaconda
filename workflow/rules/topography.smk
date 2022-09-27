@@ -25,6 +25,7 @@ rule ETOPO1:
         rm output_tmp.nc
         """
 
+
 rule ICE7GNA:
     resources:
         time = "00:10:00"
@@ -35,6 +36,21 @@ rule ICE7GNA:
         "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
     shell:
         "python3 workflow/scripts/prepare_ICE-7G.py {input.grid} {input.main} {output} "
+
+rule glac1d_download_nn9927NAGrB120kto30k:
+    output:
+        "datasets/glac1d_website/GLAC1Dnn9927NAGrB120kto30k.nc",
+    shell:
+    """
+    wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB120kto30k.nc
+    """
+rule glac1d_download_GLAC1Dnn9927NAGrB30kto0k.nc:
+    output:
+        "datasets/glac1d_website/GLAC1Dnn9927NAGrB30kto0k.nc",
+    shell:
+    """
+    wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB30kto0k.nc
+    """
 
 rule glac1d_120kto30k:
     resources:
