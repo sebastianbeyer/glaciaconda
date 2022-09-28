@@ -31,7 +31,8 @@ parser = argparse.ArgumentParser(
     description='',)
 
 parser.add_argument('pism_ts_file')
-parser.add_argument('sealevel_estimate')
+parser.add_argument('output')
+parser.add_argument('--observed', help="obseverd sea level change e.g. imbrie2006", default="none")
 args = parser.parse_args()
 
 rootgrp = nc.MFDataset(args.pism_ts_file, "r")
@@ -41,18 +42,20 @@ sealevel_pism = rootgrp.variables['sea_level_rise_potential'][:]
 rootgrp.close()
 
     # "/home/sebastian/palmod/datasets/automaticIceData/input/sealevel/pism_dSL_Imbrie2006.nc", "r")
-rootgrp = Dataset(args.sealevel_estimate, "r")
-time_imbrie = rootgrp.variables['time'][:]
-sealevel_imbrie = rootgrp.variables['delta_SL'][:]
-rootgrp.close()
+if args.observed != "none":
+    rootgrp = Dataset(args.observed, "r")
+    time_imbrie = rootgrp.variables['time'][:]
+    sealevel_imbrie = rootgrp.variables['delta_SL'][:]
+    rootgrp.close()
+    time_imbrie = time_imbrie / 1000
 
 # time_imbrie = time_imbrie * 60 * 60 * 24 * 365
 time = time / (60 * 60 * 24 * 365) / 1000
-time_imbrie = time_imbrie / 1000
 
 plt.figure(figsize=(5, 2.5))
-plt.plot(time_imbrie, sealevel_imbrie, label="Imbrie 2006", color="grey")
-plt.plot(time, -sealevel_pism, label="PISM glacial index", color="darkorange")
+plt.plot(time, -sealevel_pism, label="PISM", color="darkorange")
+if args.observed != "none":
+    plt.plot(time_imbrie, sealevel_imbrie, label="Imbrie 2006", color="grey")
 plt.xlabel("time (ka)")
 plt.ylabel("sea level (m)")
 plt.legend(frameon=False)
@@ -63,6 +66,6 @@ plt.gca().spines["right"].set_alpha(0.0)
 plt.gca().spines["left"].set_alpha(0.3)
 
 plt.tight_layout()
-plt.savefig("sealevel.png", dpi=300)
+plt.savefig(args.output, dpi=300)
 
-plt.show()
+# plt.show()
