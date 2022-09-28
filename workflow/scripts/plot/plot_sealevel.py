@@ -9,7 +9,7 @@ import matplotlib
 
 
 params = {
-    'text.latex.preamble': ['\\usepackage{gensymb}'],
+    # 'text.latex.preamble': ['\\usepackage{gensymb}'],
     'image.origin': 'lower',
     'image.interpolation': 'nearest',
     'image.cmap': 'gray',
@@ -21,7 +21,7 @@ params = {
     'legend.fontsize': 6,  # was 10
     'xtick.labelsize': 8,
     'ytick.labelsize': 8,
-    'text.usetex': True,
+    # 'text.usetex': True,
     'figure.figsize': [3.39, 2.10],
     'font.family': 'serif',
 }
@@ -33,7 +33,12 @@ parser = argparse.ArgumentParser(
 parser.add_argument('pism_ts_file')
 parser.add_argument('output')
 parser.add_argument('--observed', help="obseverd sea level change e.g. imbrie2006", default="none")
+parser.add_argument('--usetex', help="use latex to improve some font rendering")
 args = parser.parse_args()
+
+if args.usetex:
+    params['text.usetex'] = True
+    params['text.latex.preamble'] = ['\\usepackage{gensymb}']
 
 rootgrp = nc.MFDataset(args.pism_ts_file, "r")
 time = rootgrp.variables['time'][:]
