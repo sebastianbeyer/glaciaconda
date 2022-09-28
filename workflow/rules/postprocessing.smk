@@ -45,7 +45,7 @@ rule plot_sealevel:
     #ref_sealevel = "",
     #regions = "results/NHEM_regions_for_plots/plot_regions_NHEM_20km.nc",
   output:
-    main = "results/PISM_results_large/{experiment}/{experiment}_sealevel.png",
+    main = "results/PISM_results_large/{experiment}/{experiment}_NHEM_20km_sealevel.png",
   conda:
     "../envs/plotting.yaml",
   shell:

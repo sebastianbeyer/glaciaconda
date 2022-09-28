@@ -5,9 +5,9 @@ rule MillenialScaleOscillations_clim_dT:
     refheight = "results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km_refheight.nc",
     delta_t   = "results/PISM_file/MillenialScaleOscillations_climatology_NHEM_20km_delta_T.nc",
   output:
-    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}.nc",
-    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}.nc",
-    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}.nc",
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_NHEM_20km.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_NHEM_20km.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_NHEM_20km.nc",
   resources:
     nodes = config['default_resources_large']['nodes'],
     partition = config['default_resources_large']['partition'],
