@@ -27,6 +27,7 @@ include: "rules/present_day_greenland.smk"
 include: "rules/pism_exps.smk"
 include: "rules/exp_gi.smk"
 include: "rules/exp_mso.smk"
+include: "rules/exp_heinrich.smk"
 
 # postprocessing
 include: "rules/postprocessing.smk"
