@@ -194,7 +194,7 @@ rule assembled_model_MillenialScaleOscillations:
 rule assembled_model_MillenialScaleOscillations_climatology:
     input:
         atmo      = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
-        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T.nc",
+        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_T_smooth_300.nc",
         #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
