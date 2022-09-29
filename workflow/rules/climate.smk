@@ -32,6 +32,8 @@ rule CESM_atmo:
         refheight ="results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_refHeight.nc"
     shell:
         "python3 workflow/scripts/prepare_CESM_atmo.py {input.grid} {input.atmo} {input.stddev} {output.main} {output.refheight}"
+    conda:
+        "../envs/dataprep.yaml",
 
 
 rule CESM_atmo_yearmean:
@@ -53,6 +55,9 @@ rule CESM_ocean:
         main = "results/CESM/{CESM_exp_name}/{CESM_exp_name}_{grid_name}_ocean.nc",
     shell:
         "python3 workflow/scripts/prepare_CESM_ocean.py {input.grid} {input.ocean} {output.main}"
+    conda:
+        "../envs/dataprep.yaml",
+
 rule CESM_ocean_yearmean:
     input:
         ocean = lambda wildcards: FILENAME[wildcards.CESM_exp_name]["ocean"],
