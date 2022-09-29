@@ -130,12 +130,12 @@ rule CESM_atmo_MSO_climatology_delta_T:
         time_series = "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean.nc",
         climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
     output:
-        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T.nc"
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_smooth_{smoothing}.nc"
     conda:
         "../envs/dataprep.yaml",
     shell:
         """
-        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing 63
+        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing {wildcards.smoothing}
         ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
         mv tmp_with_bnds.nc {output.main}
         """
