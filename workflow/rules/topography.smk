@@ -57,20 +57,24 @@ rule glac1d_download_GLAC1Dnn9927NAGrB30kto0k:
         wget -O {output} https://www.physics.mun.ca/~lev/GLAC1Dnn9927NAGrB30kto0k.nc
         """
 
-rule glac1d_120kto30k:
+rule glac1d_nn9927:
     resources:
       time = "00:10:00",
     conda:
         "../envs/dataprep.yaml",
+    wildcard_constraints:
+        time="\d+kto\d+k"
     input:
-        main = "datasets/glac1d_website/GLAC1Dnn9927NAGrB120kto30k.nc",
+        main = "datasets/glac1d_website/GLAC1Dnn9927NAGrB{time}.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
     output:
-        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_120kto30k_thk_{grid_name}.nc",
+        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_{time}_thk_{grid_name}.nc",
+    params:
+        timevar = lambda wildcards: "T120K" if wildcards.time == "120kto30k" else "T122KP1"
     shell:
         """
         ncks -O -3 {input.main} {output}_tmp # because ncrename does not work with netcdf4
-        ncrename -O -v T120K,time -d T120K,time {output}_tmp
+        ncrename -O -v {params.timevar},time -d {params.timevar},time {output}_tmp
         ncatted -O -a units,time,o,c,"years since 1-1-1" {output}_tmp
         ncatted -O -a calendar,time,o,c,"365_day" {output}_tmp
         ncap2 -s 'time=time*1000-1' {output}_tmp 
@@ -90,11 +94,14 @@ rule glac1d_singleyear:
     conda:
         "../envs/dataprep.yaml",
     input:
-        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_120kto30k_thk_{grid_name}.nc",
+        lambda wildcards: f"results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_120kto30k_thk_{wildcards.grid_name}.nc" if int(wildcards.year) <= -30000 else f"results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_30kto0k_thk_{wildcards.grid_name}.nc" 
     params:
         year = "{year}",
+        #time_string = lambda wildcards: "120kto30k" if wildcards.year >= 30 else "30kto0k"
+    wildcard_constraints:
+        year="-\d+"
     output:
-        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_{year}_thk_{grid_name}.nc",
+        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_{year}k_thk_{grid_name}.nc",
     shell:
         """
         # need timmean, because selyear does not accept --reduce_dim
