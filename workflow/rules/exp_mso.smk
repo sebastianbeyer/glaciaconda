@@ -30,6 +30,7 @@ rule MillenialScaleOscillations_clim_dT:
 {params.header} \\
 -bootstrap True \\
 -atmosphere.given.periodic True \\
+-atmosphere.file {input.main} \\
 -surface.pdd.std_dev.periodic True \\
 -i {input.main} \\
 -o {output.main} \\
