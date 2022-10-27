@@ -144,3 +144,19 @@ rule CESM_atmo_MSO_climatology_delta_T:
         mv tmp_with_bnds.nc {output.main}
         """
 
+rule CESM_atmo_MSO_climatology_delta_T_control:
+# same as the last but dT is 0 everywhere for control run
+    input:
+        time_series = "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean.nc",
+        climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
+    output:
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_control.nc"
+    conda:
+        "../envs/dataprep.yaml",
+    shell:
+        """
+        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main}  --flattenall
+        ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
+        mv tmp_with_bnds.nc {output.main}
+        """
+

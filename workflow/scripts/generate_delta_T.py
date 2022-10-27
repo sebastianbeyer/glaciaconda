@@ -46,6 +46,7 @@ if __name__ == "__main__":
     parser.add_argument("climatology")
     parser.add_argument("output")
     parser.add_argument("--smoothing", type=float, default=0.0)
+    parser.add_argument("--flattenall", action="store_true", help="make a file which is always zero")
     parser.add_argument("--skip", type=int, default=0)
 
     args = parser.parse_args()
@@ -57,6 +58,9 @@ if __name__ == "__main__":
     time = np.arange(len(delta_T))
     if args.smoothing != 0:
         delta_T = savgol_filter(delta_T, args.smoothing, 3, mode="wrap")
+
+    if args.flattenall:
+        delta_T[:] = 0
 
     if args.skip != 0:
         delta_T = delta_T[::args.skip]
