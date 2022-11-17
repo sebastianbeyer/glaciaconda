@@ -212,8 +212,9 @@ rule assembled_model_MillenialScaleOscillations:
 rule assembled_model_MillenialScaleOscillations_climatology:
     input:
         atmo      = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
-        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_T_smooth_300.nc",
         #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
+        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_T_smooth_300.nc",
+        delta_P   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_P_smooth_300.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
         thk       = "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_-21000k_thk_NHEM_20km.nc",
@@ -223,6 +224,7 @@ rule assembled_model_MillenialScaleOscillations_climatology:
     output:
         main      = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}.nc",
         delta_T   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_T.nc",
+        delta_P   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_P.nc",
         refheight = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_refheight.nc",
     conda:
         "../envs/dataprep.yaml",
@@ -239,5 +241,6 @@ rule assembled_model_MillenialScaleOscillations_climatology:
 
         cp {input.refheight} {output.refheight}
         cp {input.delta_T} {output.delta_T}
+        cp {input.delta_P} {output.delta_P}
         """
 
