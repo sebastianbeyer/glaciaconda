@@ -41,11 +41,11 @@ rule plot_MSO_1d:
 
 rule plot_sealevel:
   input:
-    main = "results/PISM_results_large/{experiment}/ts_{experiment}_NHEM_20km.nc",
+    main = "results/PISM_results_large/{experiment}/ts_{subexperiment}.nc",
     #ref_sealevel = "",
     #regions = "results/NHEM_regions_for_plots/plot_regions_NHEM_20km.nc",
   output:
-    main = "results/PISM_results_large/{experiment}/{experiment}_NHEM_20km_sealevel.png",
+    main = "results/PISM_results_large/{experiment}/{subexperiment}_sealevel.png",
   conda:
     "../envs/plotting.yaml",
   shell:
