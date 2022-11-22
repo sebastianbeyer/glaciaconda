@@ -213,11 +213,11 @@ rule assembled_model_MillenialScaleOscillations_climatology:
     input:
         atmo      = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
         #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
-        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_T_smooth_300.nc",
-        delta_P   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_NHEM_20km_delta_P_smooth_300.nc",
+        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_smooth_300.nc",
+        delta_P   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_P_smooth_300.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
-        thk       = "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_-21000k_thk_NHEM_20km.nc",
+        thk       = "results/topography/GLAC1D/GLAC1D_nn9894_NaGrB_-24000k_thk_NHEM_20km.nc",
         oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"

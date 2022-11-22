@@ -1,5 +1,10 @@
 
 FILENAME = {
+    "LGM_CN": {
+        "atmo":   "datasets/CESM/CESM1.2_CAM5_CN_LGM_Ute/b.e12.B1850C5_CN.f19_g16.LGM.G41.c.cam.h0.0042to0141_clim.nc",
+        "stddev": "datasets/CESM/CESM1.2_CAM5_CN_LGM_Ute/TREFHT_b.e12.B1850C5_CN.f19_g16.LGM.G41.c.cam.h1.0042to0141_std.nc",
+        "ocean":  "datasets/CESM/CESM1.2_CAM5_CN_LGM_Ute/TandS_b.e12.B1850C5_CN.f19_g16.LGM.G41.c.pop.h.0042to0141_clim.nc"
+    },
     "LGM_NOVEG": {
         "atmo":   "datasets/CESM/LGM_NOVEG/spin_up_21ka_CESM_noveg.cam.h0.0551to0600_clim.nc",
         "stddev": "datasets/CESM/LGM_NOVEG/TREFHT_spin_up_21ka_CESM_noveg.cam.h1.0551to0600_std.nc",
@@ -16,6 +21,8 @@ FILENAME = {
 
 rule all:
     input:
+        "results/CESM/LGM_CN/LGM_CN_NHEM_20km_atmo.nc",
+        "results/CESM/LGM_CN/LGM_CN_NHEM_20km_ocean.nc",
         "results/CESM/LGM_NOVEG/LGM_NOVEG_NHEM_20km_atmo.nc",
         "results/CESM/LGM_NOVEG/LGM_NOVEG_NHEM_20km_ocean.nc",
         "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_NHEM_20km_atmo.nc",
@@ -129,17 +136,19 @@ rule CESM_atmo_MSO_climatology:
         python3 workflow/scripts/set_climatology_time.py {output.main}
         """
 
-rule CESM_atmo_MSO_climatology_delta_T:
+rule CESM_atmo_MSO_climatology_delta:
     input:
         time_series = "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean.nc",
         climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
     output:
-        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_smooth_{smoothing}.nc"
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_{TorP}_smooth_{smoothing}.nc"
+    params:
+        varname = lambda wildcards: "air_temp" if wildcards.TorP == "T" else "precipitation",
     conda:
         "../envs/dataprep.yaml",
     shell:
         """
-        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing {wildcards.smoothing}
+        python3 workflow/scripts/generate_delta.py {input.time_series} {input.climatology} {output.main} air_temp --smoothing {wildcards.smoothing}
         ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
         mv tmp_with_bnds.nc {output.main}
         """
@@ -155,7 +164,7 @@ rule CESM_atmo_MSO_climatology_delta_T_laurentide:
         "../envs/dataprep.yaml",
     shell:
         """
-        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main} --smoothing {wildcards.smoothing}
+        python3 workflow/scripts/generate_delta.py {input.time_series} {input.climatology} {output.main} air_temp --smoothing {wildcards.smoothing}
         ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
         mv tmp_with_bnds.nc {output.main}
         """
@@ -171,7 +180,7 @@ rule CESM_atmo_MSO_climatology_delta_T_control:
         "../envs/dataprep.yaml",
     shell:
         """
-        python3 workflow/scripts/generate_delta_T.py {input.time_series} {input.climatology} {output.main}  --flattenall
+        python3 workflow/scripts/generate_delta.py {input.time_series} {input.climatology} {output.main} air_temp --flattenall
         ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
         mv tmp_with_bnds.nc {output.main}
         """

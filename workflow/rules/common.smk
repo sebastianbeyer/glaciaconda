@@ -56,10 +56,12 @@ def get_climate_pdd_from_parameters(wildcards, input):
 def get_climate_pdd_deltaT_from_parameters(wildcards, input):
     name = wildcards.paramset
     climate = [
-        "-atmosphere given,delta_T,elevation_change",
+        "-atmosphere given,delta_T,delta_P,elevation_change",
         f"-atmosphere_lapse_rate_file {input.refheight}",
         f"-atmosphere.delta_T.file {input.delta_t}",
+        f"-atmosphere.delta_P.file {input.delta_p}",
         "-atmosphere.delta_T.periodic True",
+        "-atmosphere.delta_P.periodic True",
         f"-temp_lapse_rate {PISM_parameters.loc[name]['lapserate_temp']}",
         "-surface pdd",
         f"-pdd_sd_file {input.main}",

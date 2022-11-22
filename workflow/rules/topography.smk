@@ -65,12 +65,12 @@ rule glac1d_nn9927:
     wildcard_constraints:
         time="\d+kto\d+k"
     input:
-        main = "datasets/glac1d_website/GLAC1Dnn9927NAGrB{time}.nc",
+        main = "datasets/glac1d_website/GLAC1Dnn{glacversion}NAGrB{time}.nc",
         grid   = lambda wildcards: GRID[wildcards.grid_name],
     output:
-        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_{time}_thk_{grid_name}.nc",
+        "results/topography/GLAC1D/GLAC1D_nn{glacversion}_NaGrB_{time}_thk_{grid_name}.nc",
     params:
-        timevar = lambda wildcards: "T120K" if wildcards.time == "120kto30k" else "T122KP1"
+        timevar = lambda wildcards: "T120K" if wildcards.time == "120kto30k" else "T122KP11"
     shell:
         """
         ncks -O -3 {input.main} {output}_tmp # because ncrename does not work with netcdf4
@@ -82,7 +82,7 @@ rule glac1d_nn9927:
         ncatted -O -a _FillValue,,d,, {output}
         ncatted -O -a missing_value,,d,, {output}
         ncatted -O -a long_name,thk,d,, {output}
-        ncatted -O -a source,thk,o,c,"Tarasov GLAC1Dnn9927NAGrB120kto30k" {output}
+        ncatted -O -a source,thk,o,c,"Tarasov GLAC1Dnn{wildcards.glacversion}NAGrB120kto30k" {output}
         ncatted -O -a units,thk,o,c,"m" {output}
         ncatted -O -a standard_name,thk,o,c,"land_ice_thickness" {output}
         rm {output}_tmp
@@ -94,14 +94,14 @@ rule glac1d_singleyear:
     conda:
         "../envs/dataprep.yaml",
     input:
-        lambda wildcards: f"results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_120kto30k_thk_{wildcards.grid_name}.nc" if int(wildcards.year) <= -30000 else f"results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_30kto0k_thk_{wildcards.grid_name}.nc" 
+        lambda wildcards: f"results/topography/GLAC1D/GLAC1D_nn{wildcards.glacversion}_NaGrB_120kto30k_thk_{wildcards.grid_name}.nc" if int(wildcards.year) <= -30000 else f"results/topography/GLAC1D/GLAC1D_nn{wildcards.glacversion}_NaGrB_30kto0k_thk_{wildcards.grid_name}.nc" 
     params:
         year = "{year}",
         #time_string = lambda wildcards: "120kto30k" if wildcards.year >= 30 else "30kto0k"
     wildcard_constraints:
         year="-\d+"
     output:
-        "results/topography/GLAC1D/GLAC1D_nn9927_NaGrB_{year}k_thk_{grid_name}.nc",
+        "results/topography/GLAC1D/GLAC1D_nn{glacversion}_NaGrB_{year}k_thk_{grid_name}.nc",
     shell:
         """
         # need timmean, because selyear does not accept --reduce_dim
