@@ -169,18 +169,20 @@ rule CESM_atmo_MSO_climatology_delta_T_laurentide:
         mv tmp_with_bnds.nc {output.main}
         """
 
-rule CESM_atmo_MSO_climatology_delta_T_control:
+rule CESM_atmo_MSO_climatology_delta_control:
 # same as the last but dT is 0 everywhere for control run
     input:
-        time_series = "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean.nc",
+        time_series = lambda wildcards: "datasets/CESM/millenialscaleoscillations/CESM_cycle_airtemp_mean_laurentide.nc" if wildcards.TorP == "T" else "datasets/CESM/millenialscaleoscillations/CESM_cycle_precip_mean_laurentide.nc",
         climatology = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc"
     output:
-        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_control.nc"
+        main   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_{TorP}_control.nc"
+    params:
+        varname = lambda wildcards: "air_temp" if wildcards.TorP == "T" else "precipitation",
     conda:
         "../envs/dataprep.yaml",
     shell:
         """
-        python3 workflow/scripts/generate_delta.py {input.time_series} {input.climatology} {output.main} air_temp --flattenall
+        python3 workflow/scripts/generate_delta.py {input.time_series} {input.climatology} {output.main} {params.varname} --flattenall
         ncap2 -O -s 'defdim("nv",2);time_bnds=make_bounds(time,$nv,"time_bnds");' {output.main} tmp_with_bnds.nc
         mv tmp_with_bnds.nc {output.main}
         """
