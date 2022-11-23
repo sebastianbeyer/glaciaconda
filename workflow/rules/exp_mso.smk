@@ -29,6 +29,7 @@ rule MillenialScaleOscillations_clim_dT:
   shell:
     """
 {params.header} \\
+-time_stepping.maximum_time_step 1 \\
 -bootstrap True \\
 -atmosphere.given.periodic True \\
 -atmosphere.file {input.main} \\
