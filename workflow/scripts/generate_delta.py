@@ -34,7 +34,10 @@ def write_delta_var_file(file, time, delta_var, varname):
     nc_times.calendar = '360_day'
     nc_delta_T = rootgrp.createVariable(
         varname, "f4", ("time", ))
-    nc_delta_T.units = "Kelvin"
+    if varname == "delta_T":
+        nc_delta_T.units = "Kelvin"
+    if varname == "delta_P":
+        nc_delta_T.units = "kg m-2 yr-1"
     nc_times[:] = time
     nc_delta_T[:] = delta_var
     rootgrp.close()
@@ -66,7 +69,7 @@ if __name__ == "__main__":
     else:
         raise ValueError("only air_temp or precipitation are allowed so far")
 
-        
+    print(varname) 
 
         
 
