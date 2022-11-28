@@ -244,3 +244,37 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         cp {input.delta_P} {output.delta_P}
         """
 
+rule assembled_model_Greenland_PD_tillphi:
+    input:
+        atmo      = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_GRN_20km_atmo.nc",
+        ocean     = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_GRN_20km_ocean.nc",
+        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_smooth_300.nc",
+        delta_P   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_P_smooth_300.nc",
+        heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
+        topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
+        thk       = "results/topography/GLAC1D/GLAC1D_nn9894_NaGrB_-24000k_thk_NHEM_20km.nc",
+        oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
+        refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
+        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
+    output:
+        main      = "results/PISM_file/Greenland_PD_tillphi_{grid_name}.nc",
+        delta_T   = "results/PISM_file/Greenland_PD_tillphi_{grid_name}_delta_T.nc",
+        delta_P   = "results/PISM_file/Greenland_PD_tillphi_{grid_name}_delta_P.nc",
+        refheight = "results/PISM_file/Greenland_PD_tillphi_{grid_name}_refheight.nc",
+    conda:
+        "../envs/dataprep.yaml",
+
+    shell:
+        """
+        ncks {input.atmo} {output.main}
+        # don't add ocean, it has a different time base
+        ncks -A {input.heatflux} {output.main}
+        ncks -A -v topg {input.topg} {output.main}
+        ncks -A -v thk {input.thk} {output.main}
+        ncks -A {input.oceankill} {output.main}
+        ncks -A {input.tillphi} {output.main}
+
+        cp {input.refheight} {output.refheight}
+        cp {input.delta_T} {output.delta_T}
+        cp {input.delta_P} {output.delta_P}
+        """
