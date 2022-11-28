@@ -213,8 +213,6 @@ rule assembled_model_MillenialScaleOscillations_climatology:
     input:
         atmo      = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_atmo.nc",
         #ocean     = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_ocean.nc",
-        delta_T   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_T_smooth_300.nc",
-        delta_P   = "results/CESM/MillenialScaleOscillations/CESM_MSO_climatology_{grid_name}_delta_P_smooth_300.nc",
         heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
         topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
         thk       = "results/topography/GLAC1D/GLAC1D_nn9894_NaGrB_-24000k_thk_NHEM_20km.nc",
@@ -240,8 +238,6 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         ncks -A {input.tillphi} {output.main}
 
         cp {input.refheight} {output.refheight}
-        cp {input.delta_T} {output.delta_T}
-        cp {input.delta_P} {output.delta_P}
         """
 
 rule assembled_model_Greenland_PD_tillphi:
