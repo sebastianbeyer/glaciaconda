@@ -10,12 +10,12 @@ rule MillenialScaleOscillations_clim_dT:
     ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_NHEM_20km.nc",
     ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_NHEM_20km.nc",
   resources:
-    nodes = config['default_resources_large']['nodes'],
-    partition = config['default_resources_large']['partition'],
-    time = config['default_resources_large']['time'],
+    nodes = 8,
+    partition = "standard96",
+    time = "12:00:00",
   params:
     start = -50000,
-    stop =  0,
+    stop =  -45000,
     ts_times = config['times']['ts_times'],
     ex_times = config['times']['ex_times'],
     header = lambda wildcards: "spack load pism@2.0.5 \n \nsrun pismr" if config['use_spack'] else config['header_local'],
@@ -29,6 +29,7 @@ rule MillenialScaleOscillations_clim_dT:
   shell:
     """
 {params.header} \\
+-time_stepping.maximum_time_step 7days \\
 -bootstrap True \\
 -atmosphere.given.periodic True \\
 -atmosphere.file {input.main} \\
