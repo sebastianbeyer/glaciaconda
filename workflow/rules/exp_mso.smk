@@ -302,6 +302,7 @@ rule merge_mso_clim:
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-20000_-15000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-15000_-10000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-10000_-05000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-05000_-00000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_00000_05000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_05000_10000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_10000_15000.nc",
