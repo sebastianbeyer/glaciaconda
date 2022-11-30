@@ -8,7 +8,7 @@ rule Greenland_PD:
     ts =   "results/PISM_results_large/Greenland_CESM_PD_{paramset}/ts_Greenland_CESM_PD_{paramset}_GRN_20km.nc",
     ex =   "results/PISM_results_large/Greenland_CESM_PD_{paramset}/ex_Greenland_CESM_PD_{paramset}_GRN_20km.nc",
   resources:
-    nodes = 8
+    nodes = 8,
     partition = config['default_resources_large']['partition'],
     time = "6:00:00"
   params:
