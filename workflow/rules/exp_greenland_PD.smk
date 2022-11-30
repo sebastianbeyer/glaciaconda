@@ -23,7 +23,7 @@ rule Greenland_PD:
     always_on = get_always_on_parameters,
     marine_ice_sheets = get_PISM_marine_ice_sheets_parameters,
     extra_vars = config['PISM_extra_vars'],
-    grid = config['PISM_grids']['NHEM_20km'],
+    grid = config['PISM_grids']['GRN_20km'],
   shell:
     """
 {params.header} \\
