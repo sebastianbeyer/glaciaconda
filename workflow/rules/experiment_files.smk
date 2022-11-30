@@ -218,10 +218,10 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         thk       = "results/topography/GLAC1D/GLAC1D_nn9894_NaGrB_-24000k_thk_NHEM_20km.nc",
         oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
         refheight = "results/CESM/MillenialScaleOscillations/CESM_MSO_{grid_name}_refHeight.nc",
-        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
+        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac{taufac}_{grid_name}.nc"
     output:
-        main      = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}.nc",
-        refheight = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_refheight.nc",
+        main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac{taufac}_{grid_name}.nc",
+        refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac{taufac}_{grid_name}_refheight.nc",
     conda:
         "../envs/dataprep.yaml",
 
