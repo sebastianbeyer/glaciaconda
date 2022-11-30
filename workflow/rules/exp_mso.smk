@@ -290,3 +290,15 @@ use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim
     ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
     ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
 
+
+rule merge_mso_clim:
+    input = [
+            "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-50000_-45000.nc",
+            "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-45000_-40000.nc",
+            "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-40000_-35000.nc",
+            ]
+    output = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-50000_20000-nc",
+    shell:
+        """
+        cdo -O mergetime {input} {output}
+        """
