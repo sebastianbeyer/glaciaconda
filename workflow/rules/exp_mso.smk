@@ -296,6 +296,16 @@ rule merge_mso_clim:
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-50000_-45000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-45000_-40000.nc",
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-40000_-35000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-35000_-30000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-30000_-25000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-25000_-20000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-20000_-15000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-15000_-10000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-10000_-05000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_00000_05000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_05000_10000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_10000_15000.nc",
+        "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
     output:
         "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_-50000_20000.nc",
     conda:
