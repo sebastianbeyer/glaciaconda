@@ -66,6 +66,7 @@ rule MillenialScaleOscillations_clim_dT:
 {params.header} \\
 -time_stepping.maximum_time_step {resources.max_dt} \\
 -bootstrap True \\
+-sea_level.constant.value -120 \\
 -atmosphere.given.periodic True \\
 -atmosphere.file {input.main} \\
 -surface.pdd.std_dev.periodic True \\
@@ -123,6 +124,7 @@ rule MillenialScaleOscillations_clim_dT_2:
 {params.header} \\
 -time_stepping.maximum_time_step {resources.max_dt} \\
 -bootstrap False \\
+-sea_level.constant.value -120 \\
 -atmosphere.given.periodic True \\
 -atmosphere.given.file {input.main} \\
 -surface.pdd.std_dev.periodic True \\
