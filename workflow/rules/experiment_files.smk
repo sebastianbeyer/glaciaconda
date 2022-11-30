@@ -221,8 +221,6 @@ rule assembled_model_MillenialScaleOscillations_climatology:
         tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
     output:
         main      = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}.nc",
-        delta_T   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_T.nc",
-        delta_P   = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_delta_P.nc",
         refheight = "results/PISM_file/MillenialScaleOscillations_climatology_{grid_name}_refheight.nc",
     conda:
         "../envs/dataprep.yaml",
