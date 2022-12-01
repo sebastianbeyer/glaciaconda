@@ -25,6 +25,7 @@ spack load pism-sbeyer@current\\
 
 srun pismr \\
 -i {input} \\
+-bootstrap \\
 -o {output.main}.nc
 -Mx 76 -My 141 -Mz 101 -Mbz 11 \\
 -z_spacing equal -Lz 4000 -Lbz 2000 \\
@@ -34,8 +35,7 @@ srun pismr \\
 -ys -10000 \\
 -ye 0 \\
 -surface given \\
--surface_given_file \\
-pism_Greenland_5km_v1.1.nc \\
+-surface_given_file pism_Greenland_5km_v1.1.nc \\
 -front_retreat_file pism_Greenland_5km_v1.1.nc \\
 -sia_e 3.0 \\
 -ts_file {output.ts} \\
