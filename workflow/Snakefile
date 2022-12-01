@@ -16,6 +16,7 @@ include: "rules/topography.smk"
 include: "rules/heatflux.smk"
 include: "rules/sediment.smk"
 
+include: "rules/pism_example.smk"
 
 ##### pism experiments ####
 include: "rules/experiment_files.smk"
