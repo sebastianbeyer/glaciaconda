@@ -62,6 +62,8 @@ ncap2 -A \
       $PISMVERSION $PISMVERSION
 ncatted -a standard_name,land_ice_area_fraction_retreat,d,, $PISMVERSION
 
+ncatted -O -a calendar,time,c,c,"365_day" $PISMVERSION
+
 echo "done."
 echo
 
