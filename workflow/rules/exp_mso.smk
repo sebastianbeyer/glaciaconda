@@ -294,6 +294,77 @@ use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim
     ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
     ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
 
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_15 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_15000_20000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_20000_25000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_20000_25000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_20000_25000.nc",
+
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_16 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_20000_25000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_25000_30000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_25000_30000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_25000_30000.nc",
+
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_17 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_25000_30000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_30000_35000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_30000_35000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_30000_35000.nc",
+
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_18 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_30000_35000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_35000_40000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_35000_40000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_35000_40000.nc",
+
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_19 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_35000_40000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_40000_45000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_40000_45000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_40000_45000.nc",
+
+use rule MillenialScaleOscillations_clim_dT_2 as MillenialScaleOscillations_clim_dT_20 with:
+  input:
+    main      = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km.nc",
+    refheight = "results/PISM_file/MillenialScaleOscillations_climatology_taufac0.01_NHEM_20km_refheight.nc",
+    delta_t   = get_dT_forcingfile,
+    delta_p   = get_dP_forcingfile,
+    restart   = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_40000_45000.nc",
+  output:
+    main = "results/PISM_results_large/MSO_clim_dT_{paramset}/MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_45000_50000.nc",
+    ex   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ex_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_45000_50000.nc",
+    ts   = "results/PISM_results_large/MSO_clim_dT_{paramset}/ts_MSO_clim_dT_{paramset}_{forcing}_NHEM_20km_45000_50000.nc",
 
 rule merge_mso_clim:
     input:
