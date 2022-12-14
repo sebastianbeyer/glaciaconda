@@ -86,6 +86,25 @@ rule assembled_model_glacialindex_tillphi:
     shell:
         "workflow/scripts/assemble_model_glacialindex.sh {input.atmo0} {input.atmo1} {input.ocean0} {input.ocean1} {input.refheight0} {input.refheight1} {input.index} {input.heatflux} {input.topg} {input.thk} {input.oceankill} {input.tillphi} {output.main}"
 
+rule assembled_model_glacialindex_tillphi_cold:
+    input:
+        index      = "results/glacialindex/glacialindex.nc",
+        atmo1      = "results/CESM/LGM_CN/LGM_CN_{grid_name}_atmo.nc",
+        ocean1     = "results/CESM/LGM_CN/LGM_CN_{grid_name}_ocean.nc",
+        refheight1 = "results/CESM/LGM_CN/LGM_CN_{grid_name}_refHeight.nc",
+        atmo0      = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_atmo.nc",
+        ocean0     = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_ocean.nc",
+        refheight0 = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_refHeight.nc",
+        heatflux  = "results/heatflux/shapiro/shapiro_{grid_name}.nc",
+        topg      = "results/topography/ETOPO1/ETOPO1_{grid_name}.nc",
+        thk       = "results/topography/ICE7GNA/ICE7GNA_{grid_name}.nc",
+        oceankill = "results/oceankill/oceankill_ETOPO1_{grid_name}.nc",
+        tillphi   = "results/sediment/tillphi/tillphi_LaskeMasters_taufac0.01_{grid_name}.nc"
+    output:
+      main        = "results/PISM_file/glacialindex_cold_tillphi_{grid_name}.nc",
+    shell:
+        "workflow/scripts/assemble_model_glacialindex.sh {input.atmo0} {input.atmo1} {input.ocean0} {input.ocean1} {input.refheight0} {input.refheight1} {input.index} {input.heatflux} {input.topg} {input.thk} {input.oceankill} {input.tillphi} {output.main}"
+
 rule modelfile_greenland_PD_yearmean:
     input:
         atmo      = "results/CESM/PD_LOWALBEDO/PD_LOWALBEDO_{grid_name}_atmo_yearmean.nc",
