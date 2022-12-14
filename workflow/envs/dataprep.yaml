@@ -4,8 +4,6 @@ channels:
 dependencies:
   - numpy
   - matplotlib
-  - xarray
-  - dask
   - cdo
   - nco
   - tqdm
@@ -13,12 +11,7 @@ dependencies:
   - netcdf4
   - python-cdo
   - gridfill
-  - cartopy
-  - ca-certificates
-  - certifi
-  - openssl
   - opencv
   - pip
   - pip:
     - git+https://github.com/nco/pynco/
-
