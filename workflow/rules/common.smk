@@ -7,7 +7,8 @@ GRID = {
 
 
 wildcard_constraints:
-  grid_name="[A-Z]{3,4}_\d{1,2}km"
+  grid_name="[A-Z]{3,4}_\d{1,2}km",
+  paramset="mprange_clemdyn|mprange_std",
 
 import pandas as pd
 PISM_parameters = pd.read_csv("config/parameters.csv", skipinitialspace=True, index_col="name")
