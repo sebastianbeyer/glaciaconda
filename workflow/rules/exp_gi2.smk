@@ -351,3 +351,38 @@ use rule gi_heinrich_cold_02 as gi_heinrich_cold_24 with:
     main = "results/PISM_results_large/gi_cold_{paramset}/gi_cold_{paramset}_-5000_-0000.nc",
     ex   = "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-5000_-0000.nc",
     ts   = "results/PISM_results_large/gi_cold_{paramset}/ts_gi_cold_{paramset}_-5000_-0000.nc",
+
+rule merge_gi2:
+    input:
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-120000_-115000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-115000_-110000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-110000_-105000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-105000_-100000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-100000_-95000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-95000_-90000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-90000_-85000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-85000_-80000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-80000_-75000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-75000_-70000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-70000_-65000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-65000_-60000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-60000_-55000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-55000_-50000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-50000_-45000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-45000_-40000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-40000_-35000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-35000_-30000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-30000_-25000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-25000_-20000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-20000_-15000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-15000_-10000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-10000_-5000.nc",
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-5000_-0000.nc",
+    output:
+        "results/PISM_results_large/gi_cold_{paramset}/ex_gi_cold_{paramset}_-120000_-0000.nc",
+    conda:
+        "../envs/dataprep.yaml",
+    shell:
+        """
+        cdo -O mergetime {input} {output}
+        """
