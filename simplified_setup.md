@@ -1,10 +1,28 @@
 
 
 ## requirements
-You need some python stuff that is listed in the env... Be sure to install pynco(?) from github, because the one on pypy is not working.
+
+You need some python stuff:
+
+- numpy
+- matplotlib
+- cdo
+- nco
+- xarray
+- tqdm
+- proj
+- netcdf4
+- python-cdo
+- gridfill
+- opencv
+- pip: - git+https://github.com/nco/pynco/
+
+> **Note**
+> Be sure to install pynco(?) from github, because the one on pypy is not working.
+
 
 ## grids
-You need example grids to map the data onto. They are in 
+You need example grids to reproject the data onto. They are in `resources/grids/` (or can be generated with the script there)
 
 ## preparing CESM output for PISM
 All scripts to generate input files are in `workflow/scripts/`.
@@ -41,6 +59,11 @@ ncks -A $OCEANKILL $PISM_FILE
 
 > **Note**
 > the reference height (used for lapse rate correction) has to be in a separate file.
+
+### checkpoint:
+You should have two files now, one with almost everything and a separate file with the reference height.
+
+
 
 ## running PISM
 
