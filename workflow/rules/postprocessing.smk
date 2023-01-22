@@ -49,4 +49,4 @@ rule plot_sealevel:
   conda:
     "../envs/plotting.yaml",
   shell:
-    "python3 workflow/scripts/plot/plot_sealevel.py {input.main} {output.main}"
+    "python3 workflow/scripts/plot/plot_sealevel.py --observed datasets/sealevel/pism_dSL_Imbrie2006.nc {input.main} {output.main}"
