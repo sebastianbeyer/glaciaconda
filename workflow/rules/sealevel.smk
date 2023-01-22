@@ -8,3 +8,10 @@
 #      workflow/scripts/download_datasets/download_sealevel.sh {output}
 #      """
 
+rule sealevel_sprack_lisiecki:
+    output:
+        "datasets/sealevel/sealevel_sprack_lisiecki_2016.txt",
+    shell:
+        """
+        wget -O {output} https://www.ncei.noaa.gov/pub/data/paleo/contributions_by_author/spratt2016/spratt2016.txt
+        """
