@@ -50,3 +50,40 @@ rule plot_sealevel:
     "../envs/plotting.yaml",
   shell:
     "python3 workflow/scripts/plot/plot_sealevel.py --observed datasets/sealevel/pism_dSL_Imbrie2006.nc {input.main} {output.main}"
+
+
+
+
+def timestep_for_video(wildcards):
+        return int(wildcards.number) % 50
+
+def get_input_from_timestep(wildcards):
+    # compute the correct file according to the timestep given
+    base = "results/PISM_results_large/gi_cold_mprange_clemdyn/"
+
+    # a new file starts every 50 steps
+    fileindex = int(wildcards.number) // 50
+
+    startyear = -120000 + fileindex * 5000
+    endyear = startyear + 5000
+
+    return base + f"ex_gi_cold_mprange_clemdyn_{startyear}_{endyear}.nc"
+
+
+
+rule plot_glacialindexvideo:
+  input:
+    # main = "./results/PISM_results_large/gi_cold_mprange_clemdyn",
+    main = get_input_from_timestep,
+  output:
+    main = "results/videos/GI_frames/GI{number}.png",
+  resources:
+    timestep = timestep_for_video,
+  conda:
+    "../envs/hyoga.yaml",
+  shell:
+    "python3 workflow/scripts/plot/plot_nhem_nice.py {input.main} {output.main} --timestep {resources.timestep}"
+
+rule all_gi_video:
+    input: expand("results/videos/GI_frames/GI{i:05d}.png", i=range(0,22))
+

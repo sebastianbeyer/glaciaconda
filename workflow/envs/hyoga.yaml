@@ -1,0 +1,11 @@
+name: hyoga
+channels:
+  - conda-forge
+dependencies:
+  - xarray
+  - geopandas
+  - gdal==3.6.2
+  - cftime
+  - pip:
+    - hyoga
+
